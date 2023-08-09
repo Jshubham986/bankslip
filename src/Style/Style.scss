@@ -1,0 +1,104 @@
+//**************dashboard***********************//
+.m-0 {
+  float: right;
+}
+.content-wrapper {
+  width: auto;
+}
+.inner {
+  h3 {
+    text-align: center;
+  }
+  p {
+    text-align: center;
+  }
+}
+//*****************sidebar*************************//
+
+.d-block {
+  text-decoration: none;
+}
+
+//*****************Account master*******************//
+
+.Account-master-text {
+  width: 100%;
+  align-items: center !important;
+  text-align: center !important;
+  justify-content: center !important;
+  .form-control {
+    width: 30rem !important;
+  }
+}
+
+//**************** Login Page **********************//
+.forget{
+  text-align: center;
+  padding: 5px;
+}
+.btn1 {
+  width: 100%;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20%;
+}
+
+@keyframes slide_up {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+//******************* Signup page ********************//
+
+.mainbox {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("https://img.freepik.com/free-photo/abstract-luxury-plain-blur-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63752.jpg");
+  background-size: 100% 100%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  .Container {
+    padding: 30px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    border-radius: 1rem;
+    height: max-content;
+    width: 30%;
+    color: rgb(29, 10, 78);
+    justify-content: center;
+    background-image: url("https://img.freepik.com/free-photo/abstract-luxury-plain-blur-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-63752.jpg");
+    .flex-nowrap{
+      padding: 2px;
+    }
+    h2 {
+      color: #1e076b;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+  .btn2 {
+    text-align: center !important;
+    justify-content: center !important;
+    margin-top: 20px;
+    .btn-primary{
+     width: 100%;
+   }
+  
+  }
+}
+
+//****************Cash Slip********************//
+.inputcash{
+  border: none !important;
+  text-decoration: none;
+  border-radius: 10px !important;
+}
+.ant-table-wrapper .ant-table-thead>tr>th{
+  overflow-wrap: normal;
+}
