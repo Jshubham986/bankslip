@@ -15,6 +15,7 @@ const CashSlipButton = () => {
 
     return (
         <>
+        {/* <CashSlipdetails/> */}
         <div>
             <img
                 onClick={handleOpenModal}

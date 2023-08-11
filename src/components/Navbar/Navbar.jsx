@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -75,18 +75,7 @@ const Navbar = () => {
                     alt="User Avatar"
                     className="img-size-50 mr-3 img-circle"
                   />
-                  <div className="media-body">
-                    <h3 className="dropdown-item-title">
-                      Brad Diesel
-                      <span className="float-right text-sm text-danger">
-                        <i className="fas fa-star" />
-                      </span>
-                    </h3>
-                    <p className="text-sm">Call me whenever you can...</p>
-                    <p className="text-sm text-muted">
-                      <i className="far fa-clock mr-1" /> 4 Hours Ago
-                    </p>
-                  </div>
+                  
                 </div>
                 {/* Message End */}
               </a>

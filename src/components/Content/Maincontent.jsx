@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Navbar/Sidebar";
 import {
@@ -77,7 +77,7 @@ const Maincontent = () => {
                     <BsArrowRightCircleFill />
                   </div>
                   <a href="#" className="small-box-footer">
-                    More info <i className="fas fa-arrow-circle-right" />
+                    Coming Soon <i className="fas fa-arrow-circle-right" />
                   </a>
                 </div>
               </div>
@@ -93,7 +93,7 @@ const Maincontent = () => {
                     <BsFillPrinterFill />
                   </div>
                   <a href="#" className="small-box-footer">
-                    More info <i className="fas fa-arrow-circle-right" />
+                    Coming soon <i className="fas fa-arrow-circle-right" />
                   </a>
                 </div>
               </div>
