@@ -12,6 +12,8 @@ import AccountHolderList from "./components/Accounts/Accountholderlist";
 import BankMaster from "./components/BankMaster/BankMaster";
 import BankAccountDetails from "./components/BankMaster/BankAccountDetails";
 import CashSlipdetails from "./components/Cashslip/CashSlipdetails";
+import ShowBankAccounts from "./components/BankMaster/ShowBankAccounts";
+import AddAccountBtn from "./components/BankMaster/AddAccountBtn";
 
 const Home = () => {
   return (
@@ -30,7 +32,10 @@ const Home = () => {
             <Route exact path="/CashSlipButton" element={<CashSlipButton/>} />
             <Route exact path="/AccountHolderList" element={<AccountHolderList/>} />
             <Route exact path="/BankMaster" element={<BankMaster/>}/>
+            <Route exact path="/ShowAccounts" element={<ShowBankAccounts/>}/>
+
             <Route exact path="BankAccountDetails" element={<BankAccountDetails/>}/>
+            <Route exact path="/CashSlipButton" element={<AddAccountBtn/>} />
 
           </Routes>
         </div>

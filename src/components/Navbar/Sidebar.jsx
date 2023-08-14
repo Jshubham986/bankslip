@@ -107,7 +107,7 @@ const Sidebar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="BankAccountDetails" className="nav-link">
+                <a href="ShowAccounts" className="nav-link">
                   <i className="nav-icon fas fa fa-user" />
                   <p>Bank Accounts</p>
                 </a>

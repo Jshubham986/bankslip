@@ -16,14 +16,13 @@ const BankAccountDetails = () => {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:4545/AddBankAccountDetails", values);
+      const response = await axios.post("http://localhost:4545/AddAccountDetails", values);
 
-      if (response.status === 200) {
-        toast.success("Account saved successfully!");
-        navigate("/Maincontenct");
-      } else {
+     response.status === 200?(
+        toast.success("Account saved successfully!"),
+        navigate("/ShowAccounts")):
         toast.error("Failed to save account.");
-      }
+      
     } catch (error) {
       toast.error("An error occurred while saving the account.");
       console.error(error);
@@ -94,9 +93,8 @@ const BankAccountDetails = () => {
 
                 <Row style={{marginTop:"53px"}} justify="center">
                   <Col className="accountHolder-submit-button">
-                    <Button type="primary" htmlType="submit" loading={loading}>
-                      Submit
-                    </Button>
+                  <button type="submit" className="btn btn-primary" style={{ float: "right", marginRight: "15px" }} >Save Data</button>
+
                   </Col>
                   <Col>
                     <Button

@@ -7,8 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { BsPlusLg } from "react-icons/bs";
 import { AiFillDelete, AiFillPrinter } from "react-icons/ai"
 
-const CashSlipdetails = () => {
-    const token= localStorage.getItem("token");
+const ShowBankAccounts = () => {
     const navigate = useNavigate()
 
 
@@ -17,17 +16,11 @@ const CashSlipdetails = () => {
         getdata();
     }, [])
     const handleClick = () => {
-        navigate("/CashSlip");
+        navigate("/BankAccountDetails");
     }
 
     const getdata = async () => {
-        const response = await axios.get("http://localhost:4545/Get_cashslip_by_id", 
-        {
-            headers: {
-                authorization: `${token}`
-            },
-        }
-    );
+        const response = await axios.get("http://localhost:4545/Get_AccountDetails");
         setData(response.data.data);
         console.log(response)
     }
@@ -43,13 +36,15 @@ const CashSlipdetails = () => {
                             <thead>
                                 <tr>
                                     <th scope="row">#</th>
-                                    <th scope="col">Slip No</th>
-                                    <th scope="col">Date</th>
+                                    <th scope="col">Ac ID</th>
+                                    {/* <th scope="col">Date</th> */}
                                     <th scope="col">Account Name</th>
                                     <th scope="col">Account No</th>
                                     <th scope="col">Bank Name</th>
                                     <th scope="col">Branch Name</th>
-                                    <th scope="col">Total</th>
+                                    <th scope="col">IFSC</th>
+                                    <th scope="col">Account Type</th>
+                                    <th scope="col">Balance</th>
                                     <th scope="col">Print</th>
                                     <th scope="col">Delete</th>
 
@@ -59,13 +54,15 @@ const CashSlipdetails = () => {
                                 {data.map((element, index) => (
                                     <tr key={index}>
                                         <td>{index + 1}</td>
-                                        <td>{element.slip_no}</td>
-                                        <td>{element.date}</td>
+                                        <td>{element.accDet_id}</td>
+                                        {/* <td>{element.date}</td> */}
                                         <td>{element.Account_name}</td>
                                         <td>{element.Account_no}</td>
-                                        <td>{element.setBranch_name}</td>
-                                        <td>{element.bank_code}</td>
-                                        <td>{element.total}</td>
+                                        <td>{element.bank_name}</td>
+                                        <td>{element.Branch_name}</td>
+                                        <td>{element.ifsc}</td>
+                                        <td>{element.account_type}</td>
+                                        <td>{element.balance}</td>
                                         <td><button style={{ border: "none", backgroundColor: "white" }}><AiFillPrinter style={{ fontSize: "20px", }} /></button>  </td>
                                         <td><button style={{ border: "none", backgroundColor: "white" }}><AiFillDelete style={{ fontSize: "20px", color: "red" }} /></button></td>
                                     </tr>
@@ -95,6 +92,4 @@ const CashSlipdetails = () => {
         </>
     );
 };
-
-export default CashSlipdetails;
-
+export default ShowBankAccounts;

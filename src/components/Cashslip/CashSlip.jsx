@@ -6,6 +6,7 @@ import Sidebar from "../Navbar/Sidebar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Container } from "react-bootstrap";
 
 const CashSlip = () => {
 
@@ -41,10 +42,19 @@ const CashSlip = () => {
       slip_no, Account_name, bank_code, Account_no, Branch_name, thou: Twothou, fivhun, twohun, hun, fif, twenty, ten, date
     }
     console.log(data)
-    const response = await axios.post("http://localhost:4545/addcashslip", data);
-    console.log(response.data.success)
-    response.data.success?(navigate("/CashSlipdetail")):toast.error("Somthing Wrong ?")
-    
+    const total = (2000 * Twothou) + (200 * twohun) + (100 * hun) + (10 * ten) + (500 * fivhun) + (20 * twenty) + (50 * fif)
+    if (total > 0) {
+
+
+      const response = await axios.post("http://localhost:4545/addcashslip", data);
+      console.log(response.data.success)
+      response.data.success ?
+        (toast.success("Your Slip Has Been Generated"),
+          navigate("/CashSlipdetail")) : toast.error("Somthing Wrong ?")
+    } else {
+      toast.error("Please Enter Valid Amount")
+    }
+
 
   }
 
@@ -58,7 +68,6 @@ const CashSlip = () => {
         {/* <a style={{ float: "right" }}>
           <FcLeft />
         </a> */}
-
         <div className="content-wrapper">
           <div className="container">
             <div style={{ justifyContent: "center" }}>
@@ -113,7 +122,6 @@ const CashSlip = () => {
                         placeholder="Account Number"
                         type="number" required
                         min={0}
-                        max={20}
                         value={Account_no}
                         onChange={(e) => setAccount_no(e.target.value)}
                         style={{
@@ -163,137 +171,137 @@ const CashSlip = () => {
                     </Form.Item>
                   </Col>
                 </Row>
-            <div className="table">
+                <div className="table">
 
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Notes</th>
-                    <th scope="col">X</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>2000</td>
-                    <td>x</td>
-                    <td>
-                      <input className="input-group input-group-sm" style={{
-                        width: window.innerWidth <= 768 ? '100px' : '100%',
-                        maxWidth: '100px',
-                      }} type="number" min={0} value={Twothou} onChange={(e) => setTwoThou(e.target.value)} />
-                    </td>
-                    <td>
-                      {2000 * Twothou}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>500</td>
-                    <td>x</td>
-                    <td>
-                      <input className="input-group input-group-sm " style={{
-                        width: window.innerWidth <= 768 ? '100px' : '100%',
-                        maxWidth: '100px',
-                      }} type="number" min={0} value={fivhun} onChange={(e) => setFivhun(e.target.value)} />
-                    </td>
-                    <td>
-                      {500 * fivhun}
-                    </td>
-                  </tr>
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Notes</th>
+                        <th scope="col">X</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>2000</td>
+                        <td>x</td>
+                        <td>
+                          <input className="input-group input-group-sm" style={{
+                            width: window.innerWidth <= 768 ? '100px' : '100%',
+                            maxWidth: '100px',
+                          }} type="number" min={0} value={Twothou} onChange={(e) => setTwoThou(e.target.value)} />
+                        </td>
+                        <td>
+                          {2000 * Twothou}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>500</td>
+                        <td>x</td>
+                        <td>
+                          <input className="input-group input-group-sm " style={{
+                            width: window.innerWidth <= 768 ? '100px' : '100%',
+                            maxWidth: '100px',
+                          }} type="number" min={0} value={fivhun} onChange={(e) => setFivhun(e.target.value)} />
+                        </td>
+                        <td>
+                          {500 * fivhun}
+                        </td>
+                      </tr>
 
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>200</td>
-                    <td>x</td>
-                    <td>
-                      <input className="input-group input-group-sm " style={{
-                        width: window.innerWidth <= 768 ? '100px' : '100%',
-                        maxWidth: '100px',
-                      }} type="number" min={0} value={twohun} onChange={(e) => setTwohun(e.target.value)} />
-                    </td>
-                    <td>
-                      {200 * twohun}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>100</td>
-                    <td>x</td>
-                    <td>
-                      <input className="input-group input-group-sm " style={{
-                        width: window.innerWidth <= 768 ? '100px' : '100%',
-                        maxWidth: '100px',
-                      }} type="number" min={0} value={hun} onChange={(e) => setHun(e.target.value)} />
-                    </td>
-                    <td>
-                      {100 * hun}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>50</td>
-                    <td>x</td>
-                    <td>
-                      <input className="input-group input-group-sm " style={{
-                        width: window.innerWidth <= 768 ? '100px' : '100%',
-                        maxWidth: '100px',
-                      }} type="number" min={0} value={fif} onChange={(e) => setFif(e.target.value)} />
-                    </td>
-                    <td>
-                      {50 * fif}
-                    </td>
-                  </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>200</td>
+                        <td>x</td>
+                        <td>
+                          <input className="input-group input-group-sm " style={{
+                            width: window.innerWidth <= 768 ? '100px' : '100%',
+                            maxWidth: '100px',
+                          }} type="number" min={0} value={twohun} onChange={(e) => setTwohun(e.target.value)} />
+                        </td>
+                        <td>
+                          {200 * twohun}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">4</th>
+                        <td>100</td>
+                        <td>x</td>
+                        <td>
+                          <input className="input-group input-group-sm " style={{
+                            width: window.innerWidth <= 768 ? '100px' : '100%',
+                            maxWidth: '100px',
+                          }} type="number" min={0} value={hun} onChange={(e) => setHun(e.target.value)} />
+                        </td>
+                        <td>
+                          {100 * hun}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td>50</td>
+                        <td>x</td>
+                        <td>
+                          <input className="input-group input-group-sm " style={{
+                            width: window.innerWidth <= 768 ? '100px' : '100%',
+                            maxWidth: '100px',
+                          }} type="number" min={0} value={fif} onChange={(e) => setFif(e.target.value)} />
+                        </td>
+                        <td>
+                          {50 * fif}
+                        </td>
+                      </tr>
 
-                  <tr>
-                    <th scope="row">6</th>
-                    <td>20</td>
-                    <td>x</td>
-                    <td>
-                      <input className="input-group input-group-sm " style={{
-                        width: window.innerWidth <= 768 ? '100px' : '100%',
-                        maxWidth: '100px',
-                      }} type="number" min={0} value={twenty} onChange={(e) => setTwenty(e.target.value)} />
-                    </td>
-                    <td>
-                      {20 * twenty}
-                    </td>
-                  </tr>
+                      <tr>
+                        <th scope="row">6</th>
+                        <td>20</td>
+                        <td>x</td>
+                        <td>
+                          <input className="input-group input-group-sm " style={{
+                            width: window.innerWidth <= 768 ? '100px' : '100%',
+                            maxWidth: '100px',
+                          }} type="number" min={0} value={twenty} onChange={(e) => setTwenty(e.target.value)} />
+                        </td>
+                        <td>
+                          {20 * twenty}
+                        </td>
+                      </tr>
 
-                  <tr>
-                    <th scope="row">7</th>
-                    <td>10</td>
-                    <td>x</td>
-                    <td>
-                      <input className="input-group input-group-sm " style={{
-                        width: window.innerWidth <= 768 ? '100px' : '100%',
-                        maxWidth: '100px',
-                      }} type="number" min={0} value={ten} onChange={(e) => setTen(e.target.value)} />
-                    </td>
-                    <td>
-                      {10 * ten}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td></td>
-                    <td>
-                      <b>Total</b>
-                    </td>
-                    <td>
-                      <b>{(2000 * Twothou) + (200 * twohun) + (100 * hun) + (10 * ten) + (500 * fivhun) + (20 * twenty) + (50 * fif)}</b>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <button type="button" className="btn btn-primary" style={{ float: "right", marginRight: "10px", right: "5%" }} onClick={() => navigate("/CashSlipdetails")}>Print</button>
+                      <tr>
+                        <th scope="row">7</th>
+                        <td>10</td>
+                        <td>x</td>
+                        <td>
+                          <input className="input-group input-group-sm " style={{
+                            width: window.innerWidth <= 768 ? '100px' : '100%',
+                            maxWidth: '100px',
+                          }} type="number" min={0} value={ten} onChange={(e) => setTen(e.target.value)} />
+                        </td>
+                        <td>
+                          {10 * ten}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <b>Total</b>
+                        </td>
+                        <td>
+                          <b>{(2000 * Twothou) + (200 * twohun) + (100 * hun) + (10 * ten) + (500 * fivhun) + (20 * twenty) + (50 * fif)}</b>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="button" className="btn btn-primary" style={{ float: "right", marginRight: "10px", right: "5%" }} onClick={() => navigate("/CashSlipdetails")}>Print</button>
 
-              <button type="submit" className="btn btn-primary" style={{ float: "right", marginRight: "15px" }} >Save Data</button>
-            </div>
+                  <button type="submit" className="btn btn-primary" style={{ float: "right", marginRight: "15px" }} >Save Data</button>
+                </div>
               </Form>
             </div>
           </div>
