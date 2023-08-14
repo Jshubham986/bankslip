@@ -36,6 +36,7 @@ const CashSlipdetails = () => {
         <>
             <Navbar />
             <Sidebar />
+            
             <div className="content-wrapper">
                 <div className="container">
                     <div className="table">
