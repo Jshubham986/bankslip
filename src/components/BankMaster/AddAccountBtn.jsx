@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import BankAccountDetails from './BankAccountDetails';
 
-
-
 const AddAccountBtn = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
