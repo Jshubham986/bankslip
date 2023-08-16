@@ -1,36 +1,37 @@
-import { useState, useEffect } from "react";
-// import CashSlipButton from "./CashSlipButton";
+import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Navbar/Sidebar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BsPlusLg } from "react-icons/bs";
-import { AiFillDelete, AiFillPrinter } from "react-icons/ai"
+import { AiFillDelete, AiFillPrinter } from "react-icons/ai";
 
 const CashSlipdetails = () => {
-    const token= localStorage.getItem("token");
-    const navigate = useNavigate()
+    const token = localStorage.getItem("token");
+    const navigate = useNavigate();
 
-
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
     useEffect(() => {
-        getdata();
-    }, [])
+        getData();
+    }, [data]);
+
     const handleClick = () => {
         navigate("/CashSlip");
-    }
+    };
 
-    const getdata = async () => {
-        const response = await axios.get("http://localhost:4545/Get_cashslip", 
-        {
-            headers: {
-                authorization: `${token}`
-            },
+    const getData = async () => {
+        try {
+            const response = await axios.get("http://localhost:4545/Get_cashslip_by_id", {
+                headers: {
+                    authorization: `${token}`,
+                },
+            });
+            setData(response.data.data);
+            console.log(response.data.data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
         }
-    );
-        setData(response.data.data);
-        console.log(response)
-    }
+    };
 
     return (
         <>
@@ -53,7 +54,6 @@ const CashSlipdetails = () => {
                                     <th scope="col">Total</th>
                                     <th scope="col">Print</th>
                                     <th scope="col">Delete</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,35 +67,39 @@ const CashSlipdetails = () => {
                                         <td>{element.setBranch_name}</td>
                                         <td>{element.bank_code}</td>
                                         <td>{element.total}</td>
-                                        <td><button style={{ border: "none", backgroundColor: "white" }}><AiFillPrinter style={{ fontSize: "20px", }} /></button>  </td>
-                                        <td><button style={{ border: "none", backgroundColor: "white" }}><AiFillDelete style={{ fontSize: "20px", color: "red" }} /></button></td>
+                                        <td>
+                                            <button style={{ border: "none", backgroundColor: "white" }}>
+                                                <AiFillPrinter style={{ fontSize: "20px" }} />
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button style={{ border: "none", backgroundColor: "white" }}>
+                                                <AiFillDelete style={{ fontSize: "20px", color: "red" }} />
+                                            </button>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <button style={{
-                    height: "7vh",
-                    position: "fixed",
-                    right: "3%",
-                    bottom: "8%",
-                    borderRadius: "50%",
-                    backgroundColor: "#4477CE",
-
-                    border: "none"
-
-
-
-
-                }} onClick={handleClick}><BsPlusLg style={{ fontSize: "42px", color: "white", }} /></button>
-                {/* <button onClick={() => navigate("/CashSlipdetails")}>Back to Cash Slip Details</button> */}
-
+                <button
+                    style={{
+                        height: "7vh",
+                        position: "fixed",
+                        right: "3%",
+                        bottom: "8%",
+                        borderRadius: "50%",
+                        backgroundColor: "#4477CE",
+                        border: "none",
+                    }}
+                    onClick={handleClick}
+                >
+                    <BsPlusLg style={{ fontSize: "42px", color: "white" }} />
+                </button>
             </div>
-            {/* <CashSlipButton /> */}
         </>
     );
 };
 
 export default CashSlipdetails;
-

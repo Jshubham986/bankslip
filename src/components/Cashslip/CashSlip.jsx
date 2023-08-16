@@ -6,7 +6,6 @@ import Sidebar from "../Navbar/Sidebar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Container } from "react-bootstrap";
 
 const CashSlip = () => {
 
@@ -47,7 +46,7 @@ const CashSlip = () => {
     if (total > 0) {
 
 
-      const response = await axios.post("http://localhost:4545/addcashslip", 
+      const response = await axios.post("http://localhost:4545/addcashslip", {data},
       {
         headers: {
             authorization: `${token}`
