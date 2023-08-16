@@ -1,6 +1,6 @@
 import React from "react";
 import { BiArrowBack } from "react-icons/bi";
-import { Form, Input, Button, Row, Col, message } from "antd";
+import { Form, Input, Button, Row, Col, Select,Switch, message } from "antd";
 // import 'antd/dist/antd.css';
 import axios from "axios";
 import Navbar from "../Navbar/Navbar";
@@ -21,12 +21,12 @@ const BankMaster = () => {
           toast.success("Account saved successfully!");
           form.resetFields();
         } else {
-          toast.error("Please Add Valide Deatils")
+          toast.error("Please Add Valide Deatils");
           message.error(response.data.msg);
         }
       })
       .catch((error) => {
-        toast.error("Please Add Valide Deatils")
+        toast.error("Please Add Valide Deatils");
         console.error("Error:", error);
         message.error("An error occurred. Please try again later.");
       });
@@ -66,21 +66,32 @@ const BankMaster = () => {
             name="bank_name"
             rules={[{ required: true, message: "Please enter bank name!" }]}
           >
-            <Input />
+            <Input placeholder="Bank Name" />
           </Form.Item>
           <Form.Item
-            label="Bank Type"
-            name="bank_type"
-            rules={[{ required: true, message: "Please enter bank type!" }]}
+            label="Bank Type:"
+            name="Bank Type"
+            rules={[{ required: true }]}
           >
-            <Input />
+            <Select placeholder="Select bank types">
+              <Option value="CA">CA</Option>
+              <Option value="SA">SA</Option>
+              <Option value="SA">CC</Option>
+              <Option value="SA">OD</Option>
+              <Option value="SA">FD</Option>
+              <Option value="SA">PL</Option>
+              <Option value="SA">Loan</Option>
+              <Option value="SA">Recuring</Option>
+              <Option value="SA">Others</Option>
+            </Select>
           </Form.Item>
           <Form.Item
-            label="Client ID"
-            name="client_id"
-            rules={[{ required: true, message: "Please enter client ID!" }]}
+            label="Active:"
+            name="active"
+            valuePropName="checked"
+            initialValue={true}
           >
-            <Input />
+            <Switch />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8, span: 10 }}>
             <Button type="primary" htmlType="submit">

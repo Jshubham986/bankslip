@@ -8,10 +8,10 @@ import jwtDecode from "jwt-decode";
 
 const Sidebar = () => {
   const navigate = useNavigate();
-  const token= localStorage.getItem("token");
-  const decode = jwtDecode(token)
-  console.log(token)
-  console.log(decode)
+  const token = localStorage.getItem("token");
+  const decode = jwtDecode(token);
+  console.log(token);
+  console.log(decode);
 
   return (
     <div>
@@ -27,11 +27,9 @@ const Sidebar = () => {
                 alt="User Image"
               />
             </div>
-            <div style={{color:"white"}} className="info">
-              <a href="#" className="d-block">
-              </a>
-                <p>{decode?.admin.name}</p>
-              
+            <div style={{ color: "white" }} className="info">
+              <a href="#" className="d-block"></a>
+              <p>{decode?.admin.name}</p>
             </div>
           </div>
           {/* SidebarSearch Form */}
@@ -59,32 +57,31 @@ const Sidebar = () => {
               data-accordion="false"
             >
               <li className="nav-item">
-                <Link to="/Maincontenct" >Home</Link>
+                <Link to="/Maincontenct">Home</Link>
               </li>
               <li className="nav-item">
-                <a href="/CashSlipdetail" className="nav-link">
-                  {/* <Link to="/NewAccount">Cash Slip</Link> */}
+                <Link to="/CashSlipdetail" className="nav-link">
                   <BsCashCoin className="nav-icon" />
                   <p>Cash Slip</p>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a href="/AccountHolderList" className="nav-link">
+                <Link to="/AccountHolderList" className="nav-link">
                   <i className="nav-icon fas fa-arrow-right" />
                   <p>Cheque Payment</p>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a href="Cheque Collection" className="nav-link">
+                <Link to="/ComingSoon" className="nav-link">
                   <i className="nav-icon fas fa-arrow-left" />
                   <p>Cheque Collection</p>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a href="Docker Printing" className="nav-link">
+                <Link to="/ComingSoon" className="nav-link">
                   <AiFillPrinter className="nav-icon" />
                   <p>Docker Printing</p>
-                </a>
+                </Link>
               </li>
             </ul>
             <div className="user-panel mt-1 pb-1 mb-1 "></div>
@@ -100,42 +97,42 @@ const Sidebar = () => {
               data-accordion="false"
             >
               <li className="nav-item">
-                <a href="NewAccount" className="nav-link">
+                <Link to="/NewAccount" className="nav-link">
                   <i className="nav-icon fas fa fa-user" />
                   <p>Account Holders</p>
                   <span className="right badge badge-danger">New</span>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a href="ShowAccounts" className="nav-link">
+                <Link to="/ShowAccounts" className="nav-link">
                   <i className="nav-icon fas fa fa-user" />
                   <p>Bank Accounts</p>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a href="Account Cheque Payment" className="nav-link">
+                <Link to="/ComingSoon" className="nav-link">
                   <i className="nav-icon fas fa fa-user" />
-                  <p>Account Cheque Payment</p>
-                </a>
+                  <p>Cheque Payment</p>
+                </Link>
               </li>
               <li className="nav-item">
-                <a href="Account Collection" className="nav-link">
+                <Link to="/ComingSoon" className="nav-link">
                   <i className="nav-icon fas fa-user" />
                   <p>Account Collection</p>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a href="BankMaster" className="nav-link">
+                <Link to="/BankMaster" className="nav-link">
                   {/* <i className="nav-icon fas fa-columns" /> */}
                   <BiSolidBank className="nav-icon" />
                   <p>Bank Master</p>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a href="Note Master" className="nav-link">
+                <Link to="/ComingSoon" className="nav-link">
                   <BsCashStack className="nav-icon" />
                   <p>Note Master</p>
-                </a>
+                </Link>
               </li>
               <div className="user-panel mt-1 pb-1 mb-1 "></div>
               {/* <li className="nav-header">Report</li> */}
@@ -144,20 +141,12 @@ const Sidebar = () => {
                   <p>Report</p>
                 </a>
               </div>
+
               <li className="nav-item">
-                <a href="Cash Slip" className="nav-link">
-                  <BsCashCoin className="nav-icon" />
-                  <p>
-                    Cash Slip
-                    <span className="badge badge-info right">2</span>
-                  </p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="Account Holder" className="nav-link">
+                <Link to="/NewAccount" className="nav-link">
                   <i className="nav-icon fa fa-user" />
                   <p>Account Holder</p>
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

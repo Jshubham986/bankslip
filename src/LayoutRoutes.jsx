@@ -14,6 +14,7 @@ import BankAccountDetails from "./components/BankMaster/BankAccountDetails";
 import CashSlipdetails from "./components/Cashslip/CashSlipdetails";
 import ShowBankAccounts from "./components/BankMaster/ShowBankAccounts";
 import AddAccountBtn from "./components/BankMaster/AddAccountBtn";
+import Comingsoon from "./components/ComingSoon/Comingsoon";
 
 const Home = () => {
   return (
@@ -28,14 +29,14 @@ const Home = () => {
             <Route exact path="/NewCashslip" element={<NewCashSlip />} />
             <Route exact path="/NewAccount" element={<NewAccount />} />
             <Route exact path="/CashSlipdetail" element={<CashSlipdetails/>} />
-
             <Route exact path="/CashSlipButton" element={<CashSlipButton/>} />
             <Route exact path="/AccountHolderList" element={<AccountHolderList/>} />
             <Route exact path="/BankMaster" element={<BankMaster/>}/>
             <Route exact path="/ShowAccounts" element={<ShowBankAccounts/>}/>
-
             <Route exact path="BankAccountDetails" element={<BankAccountDetails/>}/>
             <Route exact path="/CashSlipButton" element={<AddAccountBtn/>} />
+            <Route exact path="/ComingSoon" element={<Comingsoon/>} />
+
 
           </Routes>
         </div>
