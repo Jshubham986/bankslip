@@ -11,11 +11,12 @@ import { Container } from "react-bootstrap";
 const CashSlip = () => {
 
 
+  const token= localStorage.getItem("token");
 
   const navigate = useNavigate();
 
 
-  const [slip_no, setSlip_no] = useState();
+  const [client_id, setSlip_no] = useState();
   const [Account_name, setAccount_name] = useState("");
   const [bank_code, setBank_code] = useState();
   const [date, setDate] = useState(new Date().toLocaleDateString("en-GB"))
@@ -39,14 +40,20 @@ const CashSlip = () => {
   // Sum Function
   const handleSum = async () => {
     const data = {
-      slip_no, Account_name, bank_code, Account_no, Branch_name, thou: Twothou, fivhun, twohun, hun, fif, twenty, ten, date
+      client_id, Account_name, bank_code, Account_no, Branch_name, thou: Twothou, fivhun, twohun, hun, fif, twenty, ten, date
     }
     console.log(data)
     const total = (2000 * Twothou) + (200 * twohun) + (100 * hun) + (10 * ten) + (500 * fivhun) + (20 * twenty) + (50 * fif)
     if (total > 0) {
 
 
-      const response = await axios.post("http://localhost:4545/addcashslip", data);
+      const response = await axios.post("http://localhost:4545/addcashslip", 
+      {
+        headers: {
+            authorization: `${token}`
+        },
+    }
+);
       console.log(response.data.success)
       response.data.success ?
         (toast.success("Your Slip Has Been Generated"),
@@ -93,7 +100,7 @@ const CashSlip = () => {
                       <Input
                         placeholder="Slip No: 4"
                         type="text"
-                        value={slip_no}
+                        value={client_id}
                         style={{
                           width: window.innerWidth <= 768 ? '100px' : '100%',
                           maxWidth: '100px',

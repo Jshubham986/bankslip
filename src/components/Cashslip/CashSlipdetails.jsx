@@ -21,7 +21,7 @@ const CashSlipdetails = () => {
     }
 
     const getdata = async () => {
-        const response = await axios.get("http://localhost:4545/Get_cashslip_by_id", 
+        const response = await axios.get("http://localhost:4545/Get_cashslip", 
         {
             headers: {
                 authorization: `${token}`
@@ -36,7 +36,7 @@ const CashSlipdetails = () => {
         <>
             <Navbar />
             <Sidebar />
-            
+
             <div className="content-wrapper">
                 <div className="container">
                     <div className="table">
