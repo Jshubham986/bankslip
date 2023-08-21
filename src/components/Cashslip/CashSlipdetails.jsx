@@ -3,18 +3,23 @@ import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Navbar/Sidebar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
+
 
 import { BsPlusLg } from "react-icons/bs";
 import { AiFillDelete, AiFillPrinter } from "react-icons/ai";
 
 const CashSlipdetails = () => {
     const token = localStorage.getItem("token");
+  const decode = jwtDecode(token);
+
     const navigate = useNavigate();
 
     const [data, setData] = useState([]);
     useEffect(() => {
         getData();
-    }, [data]);
+       
+    },[]);
 
     const handleClick = () => {
         navigate("/CashSlip");
@@ -27,8 +32,9 @@ const CashSlipdetails = () => {
                     authorization: `${token}`,
                 },
             });
-            setData(response.data.data);
-            console.log(response.data.data);
+        setData(response?.data?.data)
+            console.log(response);
+            // console.log(decode.admin.client_id);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
