@@ -93,8 +93,77 @@ const NewAccount = () => {
                       <Select placeholder="Select a state">
                         <Option value="Andhra Pradesh">Andhra Pradesh</Option>
                         <Option value="Arunachal Pradesh">
-                          Arunachal Pradesh
+                        Arunachal Pradesh
                         </Option>
+                        <Option value="Assam">
+                        Assam
+                          </Option>
+                          <Option value="Bihar">
+                          Bihar
+                          </Option>
+                          <Option value="Chhattisgarh">
+                          Chhattisgarh
+                          </Option>
+                          <Option value="">
+                          Goa
+                          </Option>
+                          <Option value="Gujarat">
+                          Gujarat
+                          </Option>
+                          <Option value="Haryana">
+                          Haryana
+                          </Option>
+                          <Option value="Himachal Pradesh">
+                          Himachal Pradesh
+                          </Option>
+                          <Option value="Jammu and Kashmir">
+                          Jammu and Kashmir
+                          </Option>
+                          <Option value="Jharkhand">
+                          Jharkhand
+                          </Option>
+                          <Option value="Karnataka">
+                          Karnataka
+                          </Option>
+                          <Option value="Kerala">
+                          Kerala
+                          </Option>
+                          <Option value="Madhya Pradesh">
+                          Madhya Pradesh
+                          </Option>
+                          <Option value="Maharashtra" Select>
+                          Maharashtra
+                          </Option>
+                          <Option value="Manipur">
+                          Manipur
+                          </Option>
+                          <Option value="Meghalaya">
+                          Meghalaya
+                          </Option>
+                          <Option value="Mizoram">
+                          Mizoram
+                          </Option>
+                          <Option value="Nagaland">
+                          Nagaland
+                          </Option>
+                          <Option value="Odisha">
+                          Odisha
+                          </Option>
+                          <Option value="Punjab">
+                          Punjab
+                          </Option>
+                          <Option value="Rajasthan">
+                          Rajasthan
+                          </Option>
+                          <Option value="Rajasthan">
+                          Rajasthan
+                          </Option>
+                          <Option value="Rajasthan">
+                          Rajasthan
+                          </Option>
+                          <Option value="Rajasthan">
+                          Rajasthan
+                          </Option>
 
                         {/* Add other states */}
                       </Select>

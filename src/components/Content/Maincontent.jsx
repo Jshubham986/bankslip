@@ -36,7 +36,7 @@ const Maincontent = () => {
             <div className="row">
               <div className="col-lg-3 col-6">
                 {/* small box */}
-                <div onClick={()=>{navigate("/CashSlipdetail")}}  className="small-box bg-info">
+                <div onClick={()=>{navigate("/CashSlipdetail")}}  className="small-box" style={{backgroundColor:"	#7fc48a", color:"white"}}>
                   <div className="inner">
                     <h5>Cash Slip</h5>
                     <h6>Documents</h6>
@@ -51,7 +51,7 @@ const Maincontent = () => {
               </div>
               <div className="col-lg-3 col-6">
                 {/* small box */}
-                <div className="small-box bg-success">
+                <div className="small-box " style={{backgroundColor:"	#76504E", color:"white"}}>
                   <div className="inner">
                     <h5>Payments</h5>
                     <h6>Deposit</h6>
@@ -67,7 +67,7 @@ const Maincontent = () => {
               </div>
               <div className="col-lg-3 col-6">
                 {/* small box */}
-                <div className="small-box bg-warning">
+                <div className="small-box" style={{backgroundColor:"	#aad7b1", color:"white"}}> 
                   <div className="inner">
                     <h5>Collections</h5>
                     <h6>User Registrations</h6>
@@ -83,7 +83,7 @@ const Maincontent = () => {
               </div>
               <div className="col-lg-3 col-6">
                 {/* small box */}
-                <div className="small-box bg-danger">
+                <div className="small-box" style={{backgroundColor:"	#D3CCCA", color:"white"}}>
                   <div className="inner">
                     <h5>Docket Printing</h5>
                     <h6>Unique Visitors</h6>
@@ -119,7 +119,7 @@ const Maincontent = () => {
             <div className="row">
               <div className="col-lg-3 col-4">
                 {/* small box */}
-                <div className="small-box bg-info">
+                <div className="small-box " style={{backgroundColor:"	#aad7b1", color:"white"}}>
                   <div className="inner">
                     <h5>Account</h5>
                     <h5>Holder</h5>
@@ -135,7 +135,7 @@ const Maincontent = () => {
               {/* ./col */}
               <div className="col-lg-3 col-4">
                 {/* small box */}
-                <div className="small-box bg-success">
+                <div className="small-box "style={{backgroundColor:"	#55b063", color:"white"}}>
                   <div className="inner">
                     <h5>Cash Slip</h5>
                     <h5>Account</h5>
@@ -152,7 +152,7 @@ const Maincontent = () => {
               {/* ./col */}
               <div className="col-lg-3 col-4">
                 {/* small box */}
-                <div className="small-box bg-warning">
+                <div className="small-box " style={{backgroundColor:"	#7dbd57", color:"white"}}>
                   <div className="inner">
                     <h5>Payment</h5>
                     <h5>Account</h5>
@@ -168,7 +168,7 @@ const Maincontent = () => {
               </div>
               <div className="col-lg-3 col-4">
                 {/* small box */}
-                <div className="small-box bg-danger">
+                <div className="small-box" style={{backgroundColor:"	#5cac2d", color:"white"}}>
                   <div className="inner">
                     <h5>Collection</h5>
                     <h5>Accounts</h5>
@@ -184,7 +184,7 @@ const Maincontent = () => {
               </div>
               <div className="col-lg-3 col-4">
                 {/* small box */}
-                <div className="small-box bg-warning">
+                <div className="small-box "style={{backgroundColor:"	#76cf44", color:"white"}}>
                   <div className="inner">
                     <h5>Bank</h5>
                     <h5>Master</h5>
@@ -200,7 +200,7 @@ const Maincontent = () => {
               </div>
               <div className="col-lg-3 col-4">
                 {/* small box */}
-                <div className="small-box bg-success">
+                <div className="small-box" style={{backgroundColor:"	#55b063", color:"white"}}>
                   <div className="inner">
                     <h5>Note</h5>
                     <h5>Master</h5>
