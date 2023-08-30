@@ -15,6 +15,7 @@ import CashSlipdetails from "./components/Cashslip/CashSlipdetails";
 import ShowBankAccounts from "./components/BankMaster/ShowBankAccounts";
 import AddAccountBtn from "./components/BankMaster/AddAccountBtn";
 import Comingsoon from "./components/ComingSoon/Comingsoon";
+import Print_Cashslip from "./components/PrintCashslip/Print_Cashslip";
 
 const Home = () => {
   return (
@@ -30,6 +31,7 @@ const Home = () => {
             <Route exact path="/NewAccount" element={<NewAccount />} />
             <Route exact path="/CashSlipdetail" element={<CashSlipdetails/>} />
             <Route exact path="/CashSlipButton" element={<CashSlipButton/>} />
+            <Route exact path="/Print_Cashslip" element={<Print_Cashslip/>}/>
             <Route exact path="/AccountHolderList" element={<AccountHolderList/>} />
             <Route exact path="/BankMaster" element={<BankMaster/>}/>
             <Route exact path="/ShowAccounts" element={<ShowBankAccounts/>}/>
