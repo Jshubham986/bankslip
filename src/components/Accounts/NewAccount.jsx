@@ -13,6 +13,7 @@ const NewAccount = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const [active, setActive] = useState(true);
 
   const handleSubmit = async (values) => {
     setLoading(true);
@@ -34,7 +35,9 @@ const NewAccount = () => {
     }
     setLoading(false);
   };
-
+  const handleActiveToggle = (checked) => {
+    setActive(checked);
+  }
   return (
     <>
       <Navbar />
@@ -65,32 +68,36 @@ const NewAccount = () => {
                       label="Account Name:"
                       name="account_name"
                       rules={[{ required: true }]}
+                      
                     >
-                      <Input placeholder="Account Name" />
+                      <Input placeholder="Account Name"  disabled={!active}/>
                     </Form.Item>
 
                     <Form.Item
                       label="Mobile No.:"
                       name="mobile"
                       rules={[{ required: true }]}
+                     
                     >
-                      <Input type="number" step="1" placeholder="Mobile No" />
+                      <Input type="number" step="1" placeholder="Mobile No"  disabled={!active} />
                     </Form.Item>
 
                     <Form.Item
                       label="City:"
                       name="city"
                       rules={[{ required: true }]}
+                      
                     >
-                      <Input placeholder="City" />
+                      <Input placeholder="City"  disabled={!active} />
                     </Form.Item>
 
                     <Form.Item
                       label="State:"
                       name="state"
                       rules={[{ required: true }]}
+                      
                     >
-                      <Select placeholder="Select a state">
+                      <Select placeholder="Select a state" disabled={!active}>
                         <Option value="Andhra Pradesh">Andhra Pradesh</Option>
                         <Option value="Arunachal Pradesh">
                         Arunachal Pradesh
@@ -155,15 +162,28 @@ const NewAccount = () => {
                           <Option value="Rajasthan">
                           Rajasthan
                           </Option>
-                          <Option value="Rajasthan">
-                          Rajasthan
+                          <Option value="Sikkim">
+                          Sikkim
                           </Option>
-                          <Option value="Rajasthan">
-                          Rajasthan
+                          <Option value="Tamil Nadu	">
+                          Tamil Nadu	
                           </Option>
-                          <Option value="Rajasthan">
-                          Rajasthan
+                          <Option value="Telangana">
+                          Telangana
                           </Option>
+                          <Option value="Tripura">
+                          Tripura
+                          </Option>
+                          <Option value="Uttar Pradesh	">
+                          Uttar Pradesh	
+                          </Option>
+                          <Option value="Uttarakhand">
+                          Uttarakhand
+                          </Option>
+                          <Option value="West Bengal	">
+                          West Bengal	
+                          </Option>
+
 
                         {/* Add other states */}
                       </Select>
@@ -175,7 +195,7 @@ const NewAccount = () => {
                       valuePropName="checked"
                       initialValue={true}
                     >
-                      <Switch />
+                      <Switch  onChange={handleActiveToggle}/>
                     </Form.Item>
                   </Col>
                   <Col span={10}>
@@ -184,7 +204,7 @@ const NewAccount = () => {
                       name="email"
                       rules={[{ required: true, type: "email" }]}
                     >
-                      <Input placeholder="Email Id" />
+                      <Input placeholder="Email Id" disabled={!active} />
                     </Form.Item>
 
                     <Form.Item
@@ -192,15 +212,15 @@ const NewAccount = () => {
                       name="address"
                       rules={[{ required: true }]}
                     >
-                      <Input placeholder="Address" />
+                      <Input placeholder="Address"  disabled={!active}/>
                     </Form.Item>
 
                     <Form.Item
                       label="Pin Code:"
                       name="pin code"
                       rules={[{ required: true }]}
-                    >
-                      <Input type="number" step="1" placeholder="Pin code" />
+                    > 
+                      <Input type="number" step="1" placeholder="Pin code"  disabled={!active}/>
                     </Form.Item>
 
                     <Form.Item
@@ -208,7 +228,7 @@ const NewAccount = () => {
                       name="country"
                       rules={[{ required: true }]}
                     >
-                      <Input placeholder="India" defaultValue="India" />
+                      <Input placeholder="India" defaultValue="India" disabled={!active} />
                     </Form.Item>
 
                     <Row justify="start">

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input, Switch, Button, Row, Col, message } from "antd";
+import { Form, Input, Switch, Button, Row, Col, message, Select } from "antd";
 import { BiArrowBack } from "react-icons/bi";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Navbar/Sidebar";
@@ -7,17 +7,20 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Container } from "react-bootstrap";
+import { Option } from "antd/es/mentions";
+
 
 const BankAccountDetails = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
+
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
       const response = await axios.post("http://localhost:4545/AddAccountDetails", values);
-
+console.log(response);
      response.status === 200?(
         toast.success("Account saved successfully!"),
         navigate("/ShowAccounts")):
@@ -41,7 +44,7 @@ const BankAccountDetails = () => {
             <Row align="middle" style={{ marginBottom: "20px" }}>
               <Col flex="none">
                 <span  onClick={() => {
-                        navigate("/Maincontenct");
+                        navigate("/ShowAccounts");
                       }} style={{ fontSize: "25px", cursor: "pointer" }}>
                   <BiArrowBack />
                 </span>
@@ -65,13 +68,11 @@ const BankAccountDetails = () => {
                   <Input placeholder="Branch Name" />
                 </Form.Item>
 
-                <Form.Item label="Enter Email:" name="email" rules={[{ required: true, type: "email" }]}>
-                  <Input placeholder="Enter Email" />
+                <Form.Item label=" Bank Email:" name="email" >
+                  <Input placeholder="Enter Bank Email" />
                 </Form.Item>
 
-                <Form.Item label="Balance:" name="balance" rules={[{ required: true }]}>
-                  <Input type="number" step="1" placeholder="Balance" />
-                </Form.Item>
+               
 
               </Col>
               <Col span={10}>
@@ -79,28 +80,40 @@ const BankAccountDetails = () => {
                   <Input type="number" step="1"  placeholder="Account Number" />
                 </Form.Item>
 
-                <Form.Item label="Account Type:" name="account_type" rules={[{ required: true }]}>
-                  <Input placeholder="Account Type" />
-                </Form.Item>
+                <Col span={10}>
+                    <Form.Item label="Account Type:" name="account_type" rules={[{ required: true }]}>
+                      <Select>
+                        <Option value="account_saving">Saving Account</Option>
+                        <Option value="account_Cureent">Current Account</Option>
+                        <Option value="account_fd">Fd Account</Option>
+                        <Option value="account_loan">Loan Account</Option>
+                        <Option value="account_recurring">Recurring Account</Option>
+                        <Option value="account_other">Other</Option>
+                        {/* Add other options as needed */}
+                      </Select>
+                    </Form.Item>
+                    {/* ... other Form.Item components ... */}
+                  </Col>
 
-                <Form.Item label="IFSC Code:" name="ifsc" rules={[{ required: true,  }]}>
+                <Form.Item label="IFSC Code:" name="ifsc" >
                   <Input placeholder="IFSC Code" />
                 </Form.Item>
 
-                <Form.Item label="Mobile Number:" name="mobile" rules={[{ required: true }]}>
+                <Form.Item label=" Bank Mobile Number:" name="mobile" >
                   <Input type="number" step="1" placeholder="Mobile Number" />
                 </Form.Item>
 
                 <Row style={{marginTop:"53px"}} justify="center">
                   <Col className="accountHolder-submit-button">
-                  <button type="submit" className="btn btn-primary" style={{ float: "right", marginRight: "15px" }} >Save Data</button>
+                  <button type="submit" className="btn  btn-primary" style={{ float: "right", marginRight: "15px" }} >Save Data</button>
 
                   </Col>
-                  <Col>
+                  <Col className="accountHolder-submit-button">
                     <Button
-                      style={{ marginLeft: "10px" }}
+                    className="btn"
+                      style={{ marginLeft: "10px" }} 
                       onClick={() => {
-                        navigate("/Maincontenct");
+                        navigate("/ShowAccounts");
                       }}
                     >
                       Cancel
