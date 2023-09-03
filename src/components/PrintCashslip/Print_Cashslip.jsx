@@ -55,7 +55,7 @@ const getdata = async ()=>{
   return (
     <>
     {/* <NewSlip/> */}
-    {data.map((element,index)=>(
+    {data.map((element)=>(
 
     <div ref={componentPdf}>
       <Document>
@@ -108,9 +108,9 @@ const getdata = async ()=>{
               <div style={{ display: "flex" }}>
                 <h3 style={{ marginLeft: "420px", marginTop:"-6px",letterSpacing:"10px" }}>2222222222</h3>
               </div>
-              <div style={{ display: "flex" }}>
+              {/* <div style={{ display: "flex" }}>
                 <h3 style={{ marginLeft: "420px", marginTop:"-5px",letterSpacing:"10px" }}>{element.bank_code}</h3>
-              </div>
+              </div> */}
               <div style={{ display: "flex" }}>
                 <h3 style={{ marginLeft: "640px", marginTop:"-70px",letterSpacing:"11px" }}>{element.Account_no}</h3>
               </div>
@@ -132,29 +132,33 @@ const getdata = async ()=>{
               </div>
               <div   style={{ marginLeft: "800px", marginTop: "-70px" }}>
                 <div className="qty" style={{ display: "flex", marginLeft: "14px" }}>
-                  <h4 style={{ marginLeft: "80px" }}>{element.twohun}</h4>
-                  <h4 style={{ marginLeft: "0px" }}>{element.twohun}/-</h4>
+                  <h4 style={{ marginLeft: "80px" }}>{element.qty2000}</h4>
+                  <h4 style={{ marginLeft: "0px" }}>{element.thou}/-</h4>
                 </div>
                 <div  style={{ display: "flex", marginLeft: "15px" ,marginTop:"-35px" }}>
-                  <h4 style={{ marginLeft: "80px" }}>1</h4>
-                  <h4 style={{ marginLeft: "0px" }}>{element.fivhun}/-</h4>
+                  <h4 style={{ marginLeft: "80px" }}>{element.qty500}</h4>
+                  <h4 style={{ marginLeft: "80px" }}>{element.fivhun}/-</h4>
                 </div>
-                <div style={{ display: "flex", marginLeft: "15px" ,marginTop:"-35px" }}>
-                  <h4 style={{ marginLeft: "80px" }}>1</h4>
+                {/* <div style={{ display: "flex", marginLeft: "15px" ,marginTop:"-35px" }}>
+                  <h4 style={{ marginLeft: "80px" }}>{element.qty200}</h4>
+                  <h4 style={{ marginLeft: "0px" }}>{element.twohun}/-</h4>
+                </div> */}
+                {/* <div style={{ display: "flex", marginLeft: "15px" ,marginTop:"-35px" }}>
+                  <h4 style={{ marginLeft: "80px" }}>{element.qty100}</h4>
                   <h4 style={{ marginLeft: "0px" }}>{element.hun}/-</h4>
-                </div>
-                <div style={{ display: "flex", marginLeft: "15px" ,marginTop:"-30px" }}>
-                  <h4 style={{ marginLeft: "80px" }}>1</h4>
+                </div> */}
+                {/* <div style={{ display: "flex", marginLeft: "15px" ,marginTop:"-30px" }}>
+                  <h4 style={{ marginLeft: "80px" }}>{element.qty50}</h4>
                   <h4 style={{ marginLeft: "0px" }}>{element.fif}/-</h4>
                 </div>
                 <div style={{ display: "flex", marginLeft: "15px" ,marginTop:"-35px" }}>
-                  <h4 style={{ marginLeft: "80px" }}>1</h4>
+                  <h4 style={{ marginLeft: "80px" }}>{element.qty20}</h4>
                   <h4 style={{ marginLeft: "0px" }}>{element.twenty}/-</h4>
                 </div>
                 <div style={{ display: "flex", marginLeft: "15px" ,marginTop:"-35px" }}>
-                  <h4 style={{ marginLeft: "80px" }}>1</h4>
+                  <h4 style={{ marginLeft: "80px" }}>{element.qty10}</h4>
                   <h4 style={{ marginLeft: "0px" }}>{element.ten}/-</h4>
-                </div>
+                </div> */}
                
               </div>
               <div className="toword" style={{display:"flex",marginLeft:"460px",marginTop:"-30px"}}>

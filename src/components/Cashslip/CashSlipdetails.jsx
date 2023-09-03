@@ -24,6 +24,9 @@ const CashSlipdetails = () => {
     const handleClick = () => {
         navigate("/CashSlip");
     };
+    const handleprint = () => {
+        navigate("/Print_Cashslip");
+    };
 
     const getData = async () => {
         try {
@@ -71,11 +74,13 @@ const CashSlipdetails = () => {
                                         <td>{element.date}</td>
                                         <td>{element.Account_name}</td>
                                         <td>{element.Account_no}</td>
-                                        <td>{element.setBranch_name}</td>
-                                        <td>{element.bank_code}</td>
+                                        <td>{element.Bank_name}</td>
+                                        <td>{element.Branch_name}</td>
                                         <td>{element.total}</td>
                                         <td>
-                                            <button style={{ border: "none", backgroundColor: "white" }}>
+                                            <button style={{ border: "none", backgroundColor: "white" }}
+                                             onClick={handleprint}
+                                            >
                                                 <AiFillPrinter style={{ fontSize: "20px" }} />
                                             </button>
                                         </td>
