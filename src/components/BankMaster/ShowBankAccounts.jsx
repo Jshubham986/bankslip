@@ -6,24 +6,32 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BsPlusLg } from "react-icons/bs";
 import { AiFillDelete, AiFillPrinter } from "react-icons/ai"
+import { Pagination } from "antd";
 
 const ShowBankAccounts = () => {
     const navigate = useNavigate()
 
 
     const [data, setData] = useState([])
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10; 
     useEffect(() => {
         getdata();
     }, [])
     const handleClick = () => {
         navigate("/CashSlipButton");
     }
+    const handlePageChange = (page) => {
+        setCurrentPage(page); // Update current page
+      };
 
     const getdata = async () => {
         const response = await axios.get("http://localhost:4545/Get_AccountDetails");
         console.log(response)
         setData(response?.data?.data);
     }
+    const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
 
     return (
         <>
@@ -39,36 +47,57 @@ const ShowBankAccounts = () => {
                                     <th scope="col">Ac ID</th>
                                     {/* <th scope="col">Date</th> */}
                                     <th scope="col">Account Name</th>
-                                    <th scope="col">Account No</th>
                                     <th scope="col">Bank Name</th>
+                                    <th scope="col">Account No</th>
+                                    
                                     <th scope="col">Branch Name</th>
                                     <th scope="col">IFSC</th>
                                     <th scope="col">Account Type</th>
+<<<<<<< HEAD
                                     {/* <th scope="col">Balance</th>
                                     <th scope="col">Print</th> */}
+=======
+                                    
+                                    
+>>>>>>> 710823e1fbb76545acdd5ee3d039d2158c7434c8
                                     <th scope="col">Delete</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                {data.map((element, index) => (
+                                {data.slice(startIndex,endIndex).map((element, index) => (
                                     <tr key={index}>
                                         <td>{index + 1}</td>
                                         <td>{element.accDet_id}</td>
                                         {/* <td>{element.date}</td> */}
                                         <td>{element.Account_name}</td>
+<<<<<<< HEAD
                                         <td>{element.account_no}</td>
+=======
+>>>>>>> 710823e1fbb76545acdd5ee3d039d2158c7434c8
                                         <td>{element.bank_name}</td>
+                                        <td>{element.Account_no}</td>
+                                        
                                         <td>{element.Branch_name}</td>
                                         <td>{element.ifsc}</td>
                                         <td>{element.account_type}</td>
+<<<<<<< HEAD
                                        
                                         {/* <td><button style={{ border: "none", backgroundColor: "white" }}><AiFillPrinter style={{ fontSize: "20px", }} /></button>  </td> */}
+=======
+                                        
+>>>>>>> 710823e1fbb76545acdd5ee3d039d2158c7434c8
                                         <td><button style={{ border: "none", backgroundColor: "white" }}><AiFillDelete style={{ fontSize: "20px", color: "red" }} /></button></td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
+                        <Pagination
+        current={currentPage}
+        onChange={(handlePageChange)} // Update current page
+        total={data.length}
+        pageSize={itemsPerPage}
+      />
                     </div>
                 </div>
                 <button style={{

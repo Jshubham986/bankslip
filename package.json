@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@ant-design/icons": "^5.2.5",
+=======
+>>>>>>> 710823e1fbb76545acdd5ee3d039d2158c7434c8
     "@react-pdf/renderer": "^3.1.12",
     "antd": "^5.7.0",
     "axios": "^1.4.0",

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsCashCoin, BsCashStack } from "react-icons/bs";
 import { AiFillPrinter } from "react-icons/ai";
-import { BiSolidBank } from "react-icons/bi";
+
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
 const Sidebar = () => {
+  
   const navigate = useNavigate();
+  const [showMenu,setShowMenu]=useState();
   const token = localStorage.getItem("token");
   const decode = jwtDecode(token);
   console.log(token);
@@ -121,19 +123,19 @@ const Sidebar = () => {
                   <p>Account Collection</p>
                 </Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link to="/BankMaster" className="nav-link">
-                  {/* <i className="nav-icon fas fa-columns" /> */}
+                  
                   <BiSolidBank className="nav-icon" />
                   <p>Bank Master</p>
                 </Link>
-              </li>
-              <li className="nav-item">
+              </li> */}
+              {/* <li className="nav-item">
                 <Link to="/ComingSoon" className="nav-link">
                   <BsCashStack className="nav-icon" />
                   <p>Note Master</p>
                 </Link>
-              </li>
+              </li> */}
               <div className="user-panel mt-1 pb-1 mb-1 "></div>
               {/* <li className="nav-header">Report</li> */}
               <div className="info">

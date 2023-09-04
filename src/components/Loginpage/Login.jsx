@@ -7,6 +7,7 @@ export default function Login() {
     const navigate = useNavigate();
     const [email, setUser] = useState("");
     const [password, setPass] = useState("");
+    const [isAdmin,setIsAdmin]=useState(false)
     const handelsubmit = (e) => {
       e.preventDefault();
       axios
@@ -15,9 +16,20 @@ export default function Login() {
           if (res.data.success) {
             localStorage.setItem("token", res.data.data);
             console.log(res.data);
-            toast.success("Login Successfully.");
+            // toast.success("Login Successfully.");
             // Move the navigation here to execute after successful login
-            navigate("/Maincontenct");
+            if(email=== "admin@gmail.com" && password==="123"){
+              setIsAdmin(true)
+              toast.success("admin Login successfully");
+              navigate("/admin");
+              console.log(email, password);
+
+            }else{
+              setIsAdmin(false);
+              toast.success("user Login Succesfully")
+              navigate("/Maincontenct");
+            }
+            
           } else {
             toast.error("Please Check Username or Password");
           }
@@ -46,7 +58,7 @@ export default function Login() {
                       type="text"
                       value={email}
                       onChange={(e) => setUser(e.target.value)}
-                      class="form-control"
+                      className="form-control"
                       placeholder="Username"
                       aria-label="Username"
                       aria-describedby="addon-wrapping"
@@ -59,7 +71,7 @@ export default function Login() {
                       type="password"
                       value={password}
                       onChange={(e) => setPass(e.target.value)}
-                      class="form-control"
+                      className="form-control"
                       placeholder="Password"
                       aria-label="Username"
                       aria-describedby="addon-wrapping"
@@ -77,7 +89,7 @@ export default function Login() {
                     //     navigate("/Maincontenct");
                     //   }}
                       type="submit"
-                      class="btn btn-primary"
+                      className="btn btn-primary"
                     >
                       Login
                     </button>
@@ -88,7 +100,7 @@ export default function Login() {
                         navigate("/signup");
                       }}
                       type="button"
-                      class="btn btn-success"
+                      className="btn btn-success"
                     >
                       Sign up
                     </button>

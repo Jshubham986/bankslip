@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input, Switch, Button, Row, Col, message } from "antd";
+import { Form, Input, Switch, Button, Row, Col, message, Select } from "antd";
 import { BiArrowBack } from "react-icons/bi";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Navbar/Sidebar";
@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Container } from "react-bootstrap";
+import { Option } from "antd/es/mentions";
+
 
 const BankAccountDetails = () => {
   const navigate = useNavigate();
@@ -25,6 +27,7 @@ const [active,setactive] = useState("");
   const [form] = Form.useForm();
 
 
+<<<<<<< HEAD
   // const [loading, setLoading] = useState(false);
   // const handleSubmit = async (values) => {
   //   setLoading(true);
@@ -59,6 +62,21 @@ const [active,setactive] = useState("");
       response.data.success ?
         (toast.success("Account saved successfully!"),
           navigate("/ShowAccounts")) : toast.error("Failed to save account.")
+=======
+  const handleSubmit = async (values) => {
+    setLoading(true);
+    try {
+      const response = await axios.post("http://localhost:4545/AddAccountDetails", values);
+console.log(response);
+     response.status === 200?(
+        toast.success("Account saved successfully!"),
+        navigate("/ShowAccounts")):
+        toast.error("Failed to save account.");
+      
+    } catch (error) {
+      toast.error("An error occurred while saving the account.");
+      console.error(error);
+>>>>>>> 710823e1fbb76545acdd5ee3d039d2158c7434c8
     }
   };
 
@@ -68,6 +86,7 @@ const [active,setactive] = useState("");
       <Sidebar />
       <div className="col2">
         <div className="content-wrapper">
+<<<<<<< HEAD
           <Container>
             <Form form={form} onFinish={handleSubmit} layout="vertical">
               <Row align="middle" style={{ marginBottom: "20px" }}>
@@ -91,6 +110,28 @@ const [active,setactive] = useState("");
                       onChange={(e) => setAccount_name(e.target.value)}
                       />
                     </Form.Item>
+=======
+        <Container>
+          <Form form={form} onFinish={handleSubmit} layout="vertical">
+            <Row align="middle" style={{ marginBottom: "20px" }}>
+              <Col flex="none">
+                <span  onClick={() => {
+                        navigate("/ShowAccounts");
+                      }} style={{ fontSize: "25px", cursor: "pointer" }}>
+                  <BiArrowBack />
+                </span>
+              </Col>
+              <Col flex="auto">
+                <h4 className="Account-master-text">Add Bank Account Details</h4>
+              </Col>
+            </Row>
+            <Container>
+            <Row gutter={16}>
+              <Col span={10}>
+                <Form.Item label="Account Name:" name="Account_name" rules={[{ required: true }]}>
+                  <Input placeholder="Account name" />
+                </Form.Item>
+>>>>>>> 710823e1fbb76545acdd5ee3d039d2158c7434c8
 
                     <Form.Item label="Bank Name:" name="bank_name" rules={[{ required: true }]}>
                       <Input placeholder="Bank Name"
@@ -106,6 +147,7 @@ const [active,setactive] = useState("");
                       />
                     </Form.Item>
 
+<<<<<<< HEAD
                     <Form.Item label="Enter Email:" name="email" rules={[{ required: true, type: "email" }]}>
                       <Input placeholder="Enter Email"
                       value={email} 
@@ -166,6 +208,58 @@ const [active,setactive] = useState("");
                         </Button>
                       </Col>
                     </Row>
+=======
+                <Form.Item label=" Bank Email:" name="email" >
+                  <Input placeholder="Enter Bank Email" />
+                </Form.Item>
+
+               
+
+              </Col>
+              <Col span={10}>
+              <Form.Item label="Account Number:" name="Account_no" rules={[{ required: true }]}>
+                  <Input type="number" step="1"  placeholder="Account Number" />
+                </Form.Item>
+
+                <Col span={10}>
+                    <Form.Item label="Account Type:" name="account_type" rules={[{ required: true }]}>
+                      <Select>
+                        <Option value="account_saving">Saving Account</Option>
+                        <Option value="account_Cureent">Current Account</Option>
+                        <Option value="account_fd">Fd Account</Option>
+                        <Option value="account_loan">Loan Account</Option>
+                        <Option value="account_recurring">Recurring Account</Option>
+                        <Option value="account_other">Other</Option>
+                        {/* Add other options as needed */}
+                      </Select>
+                    </Form.Item>
+                    {/* ... other Form.Item components ... */}
+                  </Col>
+
+                <Form.Item label="IFSC Code:" name="ifsc" >
+                  <Input placeholder="IFSC Code" />
+                </Form.Item>
+
+                <Form.Item label=" Bank Mobile Number:" name="mobile" >
+                  <Input type="number" step="1" placeholder="Mobile Number" />
+                </Form.Item>
+
+                <Row style={{marginTop:"53px"}} justify="center">
+                  <Col className="accountHolder-submit-button">
+                  <button type="submit" className="btn  btn-primary" style={{ float: "right", marginRight: "15px" }} >Save Data</button>
+
+                  </Col>
+                  <Col className="accountHolder-submit-button">
+                    <Button
+                    className="btn"
+                      style={{ marginLeft: "10px" }} 
+                      onClick={() => {
+                        navigate("/ShowAccounts");
+                      }}
+                    >
+                      Cancel
+                    </Button>
+>>>>>>> 710823e1fbb76545acdd5ee3d039d2158c7434c8
                   </Col>
                 </Row>
               </Container>
