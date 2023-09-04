@@ -17,16 +17,18 @@ const CashSlip = () => {
   const [client_id, setSlip_no] = useState();
   const [Account_name, setAccount_name] = useState("");
   const [bank_code, setBank_code] = useState();
-  const [date, setDate] = useState(new Date().toLocaleDateString("en-GB"));
+  // const [date, setDate] = useState(new Date().toLocaleDateString("en-GB"));
+  const [date, setDate] = useState("");
+
   const [Account_no, setAccount_no] = useState("");
   const [Branch_name, setBranch_name] = useState("");
-  const [Twothou, setTwoThou] = useState("");
-  const [fivhun, setFivhun] = useState(0);
-  const [twohun, setTwohun] = useState(0);
-  const [hun, setHun] = useState(0);
-  const [fif, setFif] = useState(0);
-  const [twenty, setTwenty] = useState(0);
-  const [ten, setTen] = useState(0);
+  const [qty2000, setTwoThou] = useState("");
+  const [qty500, setFivhun] = useState(0);
+  const [qty200, setTwohun] = useState(0);
+  const [qty100, setHun] = useState(0);
+  const [qty50, setFif] = useState(0);
+  const [qty20, setTwenty] = useState(0);
+  const [qty10, setTen] = useState(0);
   // const [total, setTotal] = useState(0);
 
   // const modalStyle = {
@@ -36,10 +38,10 @@ const CashSlip = () => {
   // Sum Function
   const handleSum = async () => {
     const data = {
-       Account_name, bank_code, Account_no, Branch_name, thou: Twothou, fivhun, twohun, hun, fif, twenty, ten, date
+       Account_name, bank_code, Account_no, Branch_name, qty2000, qty500, qty200, qty100, qty50, qty20, qty10, date
     }
     console.log(JSON.stringify(data))
-    const total = (2000 * Twothou) + (200 * twohun) + (100 * hun) + (10 * ten) + (500 * fivhun) + (20 * twenty) + (50 * fif)
+    const total = (2000 * qty2000) + (200 * qty200) + (100 * qty100) + (10 * qty10) + (500 * qty500) + (20 * qty20) + (50 * qty50)
     if (total > 0) {
 
 
@@ -190,10 +192,10 @@ const CashSlip = () => {
                           <input className="input-group input-group-sm " style={{
                             width: window.innerWidth <= 768 ? '100px' : '100%',
                             maxWidth: '100px',
-                          }} type="number" min={0} value={Twothou} onChange={(e) => setTwoThou(e.target.value)} />
+                          }} type="number" min={0} value={qty2000} onChange={(e) => setTwoThou(e.target.value)} />
                         </td>
                         <td>
-                          {2000 * Twothou}
+                          {2000 * qty2000}
                         </td>
                       </tr>
                       <tr>
@@ -204,10 +206,10 @@ const CashSlip = () => {
                           <input className="input-group input-group-sm " style={{
                             width: window.innerWidth <= 768 ? '100px' : '100%',
                             maxWidth: '100px',
-                          }} type="number" min={0} value={fivhun} onChange={(e) => setFivhun(e.target.value)} />
+                          }} type="number" min={0} value={qty500} onChange={(e) => setFivhun(e.target.value)} />
                         </td>
                         <td>
-                          {500 * fivhun}
+                          {500 * qty500}
                         </td>
                       </tr>
 
@@ -219,10 +221,10 @@ const CashSlip = () => {
                           <input className="input-group input-group-sm " style={{
                             width: window.innerWidth <= 768 ? '100px' : '100%',
                             maxWidth: '100px',
-                          }} type="number" min={0} value={twohun} onChange={(e) => setTwohun(e.target.value)} />
+                          }} type="number" min={0} value={qty200} onChange={(e) => setTwohun(e.target.value)} />
                         </td>
                         <td>
-                          {200 * twohun}
+                          {200 * qty200}
                         </td>
                       </tr>
                       <tr>
@@ -233,10 +235,10 @@ const CashSlip = () => {
                           <input className="input-group input-group-sm " style={{
                             width: window.innerWidth <= 768 ? '100px' : '100%',
                             maxWidth: '100px',
-                          }} type="number" min={0} value={hun} onChange={(e) => setHun(e.target.value)} />
+                          }} type="number" min={0} value={qty100} onChange={(e) => setHun(e.target.value)} />
                         </td>
                         <td>
-                          {100 * hun}
+                          {100 * qty100}
                         </td>
                       </tr>
                       <tr>
@@ -247,10 +249,10 @@ const CashSlip = () => {
                           <input className="input-group input-group-sm " style={{
                             width: window.innerWidth <= 768 ? '100px' : '100%',
                             maxWidth: '100px',
-                          }} type="number" min={0} value={fif} onChange={(e) => setFif(e.target.value)} />
+                          }} type="number" min={0} value={qty50} onChange={(e) => setFif(e.target.value)} />
                         </td>
                         <td>
-                          {50 * fif}
+                          {50 * qty50}
                         </td>
                       </tr>
 
@@ -262,10 +264,10 @@ const CashSlip = () => {
                           <input className="input-group input-group-sm " style={{
                             width: window.innerWidth <= 768 ? '100px' : '100%',
                             maxWidth: '100px',
-                          }} type="number" min={0} value={twenty} onChange={(e) => setTwenty(e.target.value)} />
+                          }} type="number" min={0} value={qty20} onChange={(e) => setTwenty(e.target.value)} />
                         </td>
                         <td>
-                          {20 * twenty}
+                          {20 * qty20}
                         </td>
                       </tr>
 
@@ -277,10 +279,10 @@ const CashSlip = () => {
                           <input className="input-group input-group-sm " style={{
                             width: window.innerWidth <= 768 ? '100px' : '100%',
                             maxWidth: '100px',
-                          }} type="number" min={0} value={ten} onChange={(e) => setTen(e.target.value)} />
+                          }} type="number" min={0} value={qty10} onChange={(e) => setTen(e.target.value)} />
                         </td>
                         <td>
-                          {10 * ten}
+                          {10 * qty10}
                         </td>
                       </tr>
                       <tr>
@@ -291,12 +293,12 @@ const CashSlip = () => {
                           <b>Total</b>
                         </td>
                         <td>
-                          <b>{(2000 * Twothou) + (200 * twohun) + (100 * hun) + (10 * ten) + (500 * fivhun) + (20 * twenty) + (50 * fif)}</b>
+                          <b>{(2000 * qty2000) + (200 * qty200) + (100 * qty100) + (10 * qty10) + (500 * qty500) + (20 * qty20) + (50 * qty50)}</b>
                         </td>
                       </tr>
                     </tbody>
                   </table>
-                  <button type="button" className="btn btn-primary" style={{ float: "right", marginRight: "10px", right: "5%" }} onClick={() => navigate("/CashSlipdetails")}>Print</button>
+                  <button type="button" className="btn btn-primary" style={{ float: "right", marginRight: "10px", right: "5%" }} onClick={() => navigate("/CashSlipdetail")}>Cancle</button>
 
                   <button type="submit" className="btn btn-primary" style={{ float: "right", marginRight: "15px" }} >Save Data</button>
                 </div>

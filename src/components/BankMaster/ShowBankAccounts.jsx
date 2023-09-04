@@ -16,13 +16,13 @@ const ShowBankAccounts = () => {
         getdata();
     }, [])
     const handleClick = () => {
-        navigate("/BankAccountDetails");
+        navigate("/CashSlipButton");
     }
 
     const getdata = async () => {
         const response = await axios.get("http://localhost:4545/Get_AccountDetails");
-        setData(response.data.data);
         console.log(response)
+        setData(response?.data?.data);
     }
 
     return (
@@ -44,8 +44,8 @@ const ShowBankAccounts = () => {
                                     <th scope="col">Branch Name</th>
                                     <th scope="col">IFSC</th>
                                     <th scope="col">Account Type</th>
-                                    <th scope="col">Balance</th>
-                                    <th scope="col">Print</th>
+                                    {/* <th scope="col">Balance</th>
+                                    <th scope="col">Print</th> */}
                                     <th scope="col">Delete</th>
 
                                 </tr>
@@ -57,13 +57,13 @@ const ShowBankAccounts = () => {
                                         <td>{element.accDet_id}</td>
                                         {/* <td>{element.date}</td> */}
                                         <td>{element.Account_name}</td>
-                                        <td>{element.Account_no}</td>
+                                        <td>{element.account_no}</td>
                                         <td>{element.bank_name}</td>
                                         <td>{element.Branch_name}</td>
                                         <td>{element.ifsc}</td>
                                         <td>{element.account_type}</td>
-                                        <td>{element.balance}</td>
-                                        <td><button style={{ border: "none", backgroundColor: "white" }}><AiFillPrinter style={{ fontSize: "20px", }} /></button>  </td>
+                                       
+                                        {/* <td><button style={{ border: "none", backgroundColor: "white" }}><AiFillPrinter style={{ fontSize: "20px", }} /></button>  </td> */}
                                         <td><button style={{ border: "none", backgroundColor: "white" }}><AiFillDelete style={{ fontSize: "20px", color: "red" }} /></button></td>
                                     </tr>
                                 ))}

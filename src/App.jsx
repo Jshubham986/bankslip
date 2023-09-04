@@ -11,10 +11,10 @@ function App() {
 
   return (
     <>
-    {/* <LayoutRoutes/> */}
+    <LayoutRoutes/>
     <ToastContainer/>
     {/* <Slip/> */}
-    <Print_Cashslip/>
+    {/* <Print_Cashslip/> */}
     </>
   );
 }

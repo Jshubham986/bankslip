@@ -36,7 +36,7 @@ const Maincontent = () => {
             <div className="row">
               <div className="col-lg-3 col-6">
                 {/* small box */}
-                <div onClick={()=>{navigate("/CashSlipdetail")}}  className="small-box" style={{backgroundColor:"	#7fc48a", color:"white"}}>
+                <div onClick={()=>{navigate("/ShowAccounts")}}  className="small-box" style={{backgroundColor:"	#7fc48a", color:"white"}}>
                   <div className="inner">
                     <h5>Cash Slip</h5>
                     <h6>Documents</h6>
