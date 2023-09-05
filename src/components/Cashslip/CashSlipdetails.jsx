@@ -74,7 +74,7 @@ const CashSlipdetails = () => {
                                         <td>{element.date}</td>
                                         <td>{element.Account_name}</td>
                                         <td>{element.Account_no}</td>
-                                        <td>{element.Bank_name}</td>
+                                        <td>{element.bank_name}</td>
                                         <td>{element.Branch_name}</td>
                                         <td>{element.total}</td>
                                         <td>

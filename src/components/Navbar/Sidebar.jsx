@@ -62,7 +62,7 @@ const Sidebar = () => {
                 <Link to="/Maincontenct">Home</Link>
               </li>
               <li className="nav-item">
-                <Link to="/ShowAccounts" className="nav-link">
+                <Link to="/CashSlipdetail" className="nav-link">
                   <BsCashCoin className="nav-icon" />
                   <p>Cash Slip</p>
                 </Link>

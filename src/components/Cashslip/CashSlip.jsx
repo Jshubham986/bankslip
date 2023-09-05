@@ -298,11 +298,8 @@ const CashSlip = () => {
                       </tr>
                     </tbody>
                   </table>
-<<<<<<< HEAD
-                  <button type="button" className="btn btn-primary" style={{ float: "right", marginRight: "10px", right: "5%" }} onClick={() => navigate("/CashSlipdetail")}>Cancle</button>
-=======
+                  <button type="button" className="btn btn-primary" style={{ float: "right", marginRight: "10px", right: "5%" }} onClick={() => navigate("/CashSlipdetail")}>Cancel</button>
                   <button type="button" className="btn btn-primary" style={{ float: "right", marginRight: "10px", right: "5%" }} onClick={() => navigate("/generatePdf")}>Print</button>
->>>>>>> 710823e1fbb76545acdd5ee3d039d2158c7434c8
 
                   <button type="submit" className="btn btn-primary" style={{ float: "right", marginRight: "15px" }} >Save Data</button>
                 </div>
