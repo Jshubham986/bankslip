@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { Form, useNavigate } from "react-router-dom";
-import { Col, Row } from "react-bootstrap";
+import {  useNavigate } from "react-router-dom";
+import { Col, Row,Container,Form,Button } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
 export default function Login() {
     const navigate = useNavigate();
-    const [email, setUser] = useState("");
-    const [password, setPass] = useState("");
-    const [isAdmin,setIsAdmin]=useState(false)
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const handelsubmit = (e) => {
       e.preventDefault();
       axios
@@ -16,20 +15,9 @@ export default function Login() {
           if (res.data.success) {
             localStorage.setItem("token", res.data.data);
             console.log(res.data);
-            // toast.success("Login Successfully.");
+            toast.success("Login Successfully.");
             // Move the navigation here to execute after successful login
-            if(email=== "admin@gmail.com" && password==="123"){
-              setIsAdmin(true)
-              toast.success("admin Login successfully");
-              navigate("/admin");
-              console.log(email, password);
-
-            }else{
-              setIsAdmin(false);
-              toast.success("user Login Succesfully")
-              navigate("/Maincontenct");
-            }
-            
+            navigate("/Maincontenct");
           } else {
             toast.error("Please Check Username or Password");
           }
@@ -40,77 +28,60 @@ export default function Login() {
         });
     };
   
-  return (
-    <>
- 
-      <Row>
-        <Col>
-          <div className="mainbox">
-            <div className="Container">
-              <h2>Login</h2>
-              <form onSubmit={handelsubmit}>
-                <div className="box">
-                    
-                  <h4>Username</h4>
-                  <div className="input-group flex-nowrap">
-                    <input
-                      required    
-                      type="text"
+    return (
+      <div className="mainbox">
+        <Container>
+          <Row className="justify-content-center">
+            <Col xs={12} sm={8} md={6} lg={4}>
+              <div >
+                <h2 className="text-center">Login</h2>
+                <Form onSubmit={handelsubmit}>
+                  <Form.Group controlId="email">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="Enter email"
                       value={email}
-                      onChange={(e) => setUser(e.target.value)}
-                      className="form-control"
-                      placeholder="Username"
-                      aria-label="Username"
-                      aria-describedby="addon-wrapping"
-                    />
-                  </div>
-                  <h4>Password</h4>
-                  <div className="input-group flex-nowrap">
-                    <input
+                      onChange={(e) => setEmail(e.target.value)}
                       required
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPass(e.target.value)}
-                      className="form-control"
-                      placeholder="Password"
-                      aria-label="Username"
-                      aria-describedby="addon-wrapping"
                     />
-                  </div>
-
-                  <div className="forget">
-                    <a href="">Forget Password?</a>
-                  </div>
-                    
-                  <div className="btn1">
-                    <button
-                      style={{ alignItems: "Center", justifyContent: "center" }}
-                    //   onClick={() => {
-                    //     navigate("/Maincontenct");
-                    //   }}
-                      type="submit"
-                      className="btn btn-primary"
-                    >
+                  </Form.Group>
+  
+                  <Form.Group controlId="password">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </Form.Group>
+  
+                  <div className="text-center">
+                    <Button variant="primary" type="submit">
                       Login
-                    </button>
-
-                    <button
-                      style={{ alignItems: "Center", justifyContent: "center" }}
-                      onClick={() => {
-                        navigate("/signup");
-                      }}
-                      type="button"
-                      className="btn btn-success"
-                    >
-                      Sign up
-                    </button>
+                    </Button>
+                    <div className="text-center mt-3">
+                    
+                    <Button variant="success" href="/signup">
+                      Sign Up
+                    </Button>
                   </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </Col>
-      </Row>
-    </>
-  );
+  
+                  <div className="text-center mt-3">
+                    <a href="/forgot-password">Forgot Password?</a>
+                    <br />
+                    <a href="/signup">Don't have an account?</a>
+                  </div>
+  
+                 
+                  </div>
+                </Form>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    );
 }

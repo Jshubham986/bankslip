@@ -14,7 +14,7 @@ const BankMaster = () => {
   const navigate = useNavigate();
   const handleSubmit = (values) => {
     axios
-      .post("http://localhost:4545/AddBankMaster", values)
+      .post("https://octoedge.in/AddBankMaster", values)
       .then((response) => {
         if (response.data.success) {
           message.success(response.data.msg);

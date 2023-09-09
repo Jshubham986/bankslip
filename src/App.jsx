@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LayoutRoutes from "./LayoutRoutes"
 import Print_Cashslip from "./components/PrintCashslip/Print_Cashslip";
+import Table from "./Table";
 // import Slip from "./components/Slip/Slip";
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
     <ToastContainer/>
     {/* <Slip/> */}
     {/* <Print_Cashslip/> */}
+    {/* <Table/> */}
     </>
   );
 }

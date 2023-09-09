@@ -17,7 +17,7 @@ export default function Signup() {
       toast.error("Password doesn't Match.");
     } else {
       axios
-        .post("http://localhost:4545/Registration", {
+        .post("https://octoedge.in/Registration", {
           name,
           password,
           email,
@@ -35,7 +35,7 @@ export default function Signup() {
 
   return (
     <div className="mainbox">
-      <div className="Container">
+      <div className="Contaier">
         <h2>Registration</h2>
         <form onSubmit={handellogin}>
           <h5 style={{ marginTop: "15px" }}>Name</h5>

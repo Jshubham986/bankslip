@@ -19,7 +19,7 @@ const NewAccount = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:4545/AddAccountMaster",
+        "https://octoedge.in/AddAccountMaster",
         values
       );
 

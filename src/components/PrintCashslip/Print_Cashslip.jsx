@@ -19,7 +19,7 @@ useEffect(() => {
 
 const getdata = async ()=>{
   try{
-    const response = await axios.get("http://localhost:4545/Get_cashslip_by_id",{
+    const response = await axios.get("https://octoedge.in/Get_cashslip_by_id",{
       headers: {
         Authorization: `${token}`,
       }
@@ -73,7 +73,7 @@ const getdata = async ()=>{
               <div style={{ display: "flex" }}>
                 <h3 style={{ marginLeft: "-200px",marginTop:"-12px",letterSpacing:"11.5px" }}>{element.Account_no}</h3>
               </div>
-              <div style={{ marginLeft: "-150px", marginTop: "15px" }}>
+              <div style={{ marginLeft: "-150px", marginTop: "37px" }}>
                 <h3>{element.Account_name}</h3>
               </div>
               <div style={{ display: "flex" }}>
@@ -171,7 +171,8 @@ const getdata = async ()=>{
         
         </Row>
       </div>
-      <button onClick={generatePdf} >print</button>
+      <button onClick={generatePdf} 
+      >print</button>
       </div>
       </Page>
       </Document>

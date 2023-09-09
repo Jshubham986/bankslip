@@ -29,7 +29,7 @@ const BankAccountDetails = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:4545/AddAccountDetails",
+        "https://octoedge.in/AddAccountDetails",
         formData,
         {
           headers: {
@@ -213,7 +213,7 @@ const BankAccountDetails = () => {
                           marginRight: "15px",
                         }}
                       >
-                        Save Data
+                        Submit
                       </Button>
                     </Col>
                     <Col>
@@ -227,9 +227,7 @@ const BankAccountDetails = () => {
                       </Button>
                     </Col>
                   </Row>
-                  <Form.Item label="Bank Email:" name="bank_email">
-                    <Input placeholder="Enter Bank Email" />
-                  </Form.Item>
+                  
                 </Col>
               </Row>
             </Form>

@@ -7,9 +7,13 @@ import { Link } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
 const Sidebar = () => {
-  
+
   const navigate = useNavigate();
-  const [showMenu,setShowMenu]=useState();
+
+  const logout =()=>{
+    navigate("/")
+  }
+  const [showMenu, setShowMenu] = useState();
   const token = localStorage.getItem("token");
   const decode = jwtDecode(token);
   console.log(token);
@@ -82,7 +86,7 @@ const Sidebar = () => {
               <li className="nav-item">
                 <Link to="/ComingSoon" className="nav-link">
                   <AiFillPrinter className="nav-icon" />
-                  <p>Docker Printing</p>
+                  <p>Docket Printing</p>
                 </Link>
               </li>
             </ul>
@@ -150,6 +154,9 @@ const Sidebar = () => {
                   <p>Account Holder</p>
                 </Link>
               </li>
+              <div className="user-panel mt-1 pb-1 mb-1 "></div>
+                <button onClick={logout} type="button" class="btn btn-danger">Logout</button>
+              
             </ul>
           </nav>
         </div>

@@ -15,7 +15,7 @@ const [data, setData] = useState([])
 
 const getdata = async ()=>{
   try{
-    const response = await axios.get("http://localhost:4545/Get_cashslip_by_id",{
+    const response = await axios.get("https://octoedge.in/Get_cashslip_by_id",{
       headers: {
         Authorization: `${token}`,
       }

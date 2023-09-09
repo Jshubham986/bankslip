@@ -7,10 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { BsPlusLg } from "react-icons/bs";
 import { AiFillDelete, AiFillPrinter } from "react-icons/ai"
 import { Pagination } from "antd";
+import jwtDecode from "jwt-decode";
+
 
 const ShowBankAccounts = () => {
     const navigate = useNavigate()
-
+    const token = localStorage.getItem("token");
+    const decode = jwtDecode(token);
 
     const [data, setData] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
@@ -26,10 +29,19 @@ const ShowBankAccounts = () => {
     };
 
     const getdata = async () => {
-        const response = await axios.get("http://localhost:4545/Get_AccountDetails");
-        console.log(response)
-        setData(response?.data?.data);
-    }
+        try {
+            const response = await axios.get("https://octoedge.in/Get_AccountDetails", {
+                headers: {
+                    authorization: `${token}`,
+                },
+            });
+        setData(response?.data?.data)
+            console.log(response);
+            // console.log(decode.admin.client_id);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
 
@@ -37,14 +49,14 @@ const ShowBankAccounts = () => {
         <>
             <Navbar />
             <Sidebar />
-            <div className="content-wrapper">
+            <div className="content-wrapper ">
                 <div className="container">
-                    <div className="table">
+                    <div className="table table-responsive">
                         <table className="table">
                             <thead>
-                                <tr>
+                                <tr className="table-dark">
                                     <th scope="row">#</th>
-                                    <th scope="col">Ac ID</th>
+                                   
                                     {/* <th scope="col">Date</th> */}
                                     <th scope="col">Account Name</th>
                                     <th scope="col">Bank Name</th>
@@ -64,7 +76,7 @@ const ShowBankAccounts = () => {
                                 {data.slice(startIndex, endIndex).map((element, index) => (
                                     <tr key={index}>
                                         <td>{index + 1}</td>
-                                        <td>{element.accDet_id}</td>
+                                     
                                         {/* <td>{element.date}</td> */}
                                         <td>{element.Account_name}</td>
                                         <td>{element.bank_name}</td>
@@ -90,7 +102,7 @@ const ShowBankAccounts = () => {
                 </div>
                 <button style={{
                     height: "7vh",
-                    position: "fixed",
+                    position: "absolute",
                     right: "3%",
                     bottom: "8%",
                     borderRadius: "50%",

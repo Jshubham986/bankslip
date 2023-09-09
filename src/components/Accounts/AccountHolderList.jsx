@@ -8,7 +8,7 @@ const AccountHolderList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:4545/Get_AccountMaster")
+    fetch("https://octoedge.in/Get_AccountMaster")
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);

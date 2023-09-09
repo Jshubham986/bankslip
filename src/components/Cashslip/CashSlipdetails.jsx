@@ -8,6 +8,7 @@ import jwtDecode from "jwt-decode";
 
 import { BsPlusLg } from "react-icons/bs";
 import { AiFillDelete, AiFillPrinter } from "react-icons/ai";
+import { Pagination } from "antd";
 
 const CashSlipdetails = () => {
     const token = localStorage.getItem("token");
@@ -16,6 +17,13 @@ const CashSlipdetails = () => {
     const navigate = useNavigate();
 
     const [data, setData] = useState([]);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+    const handlePageChange = (page) => {
+        setCurrentPage(page); // Update current page
+    };
+
     useEffect(() => {
         getData();
        
@@ -30,7 +38,7 @@ const CashSlipdetails = () => {
 
     const getData = async () => {
         try {
-            const response = await axios.get("http://localhost:4545/Get_cashslip_by_id", {
+            const response = await axios.get("https://octoedge.in/Get_cashslip_by_id", {
                 headers: {
                     authorization: `${token}`,
                 },
@@ -43,6 +51,10 @@ const CashSlipdetails = () => {
         }
     };
 
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+
     return (
         <>
             <Navbar />
@@ -50,10 +62,10 @@ const CashSlipdetails = () => {
 
             <div className="content-wrapper">
                 <div className="container">
-                    <div className="table">
-                        <table className="table">
+                    <div className="table table-responsive">
+                        <table className="table ">
                             <thead>
-                                <tr>
+                                <tr className="table-dark">
                                     <th scope="row">#</th>
                                     <th scope="col">Slip No</th>
                                     <th scope="col">Date</th>
@@ -67,7 +79,7 @@ const CashSlipdetails = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {data.map((element, index) => (
+                                {data.slice(startIndex, endIndex).map((element, index) => (
                                     <tr key={index}>
                                         <td>{index + 1}</td>
                                         <td>{element.slip_no}</td>
@@ -94,13 +106,19 @@ const CashSlipdetails = () => {
                             </tbody>
                         </table>
                     </div>
+                    <Pagination
+                            current={currentPage}
+                            onChange={(handlePageChange)} // Update current page
+                            total={data.length}
+                            pageSize={itemsPerPage}
+                        />
                 </div>
                 <button
                     style={{
                         height: "7vh",
-                        position: "fixed",
+                        position: "absolute",
                         right: "3%",
-                        bottom: "8%",
+                        bottom: "3%",
                         borderRadius: "50%",
                         backgroundColor: "#4477CE",
                         border: "none",

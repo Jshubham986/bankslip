@@ -45,7 +45,7 @@ const CashSlip = () => {
     if (total > 0) {
 
 
-      const response = await axios.post("http://localhost:4545/addcashslip",data, {
+      const response = await axios.post("https://octoedge.in/addcashslip",data, {
         headers: {
           authorization: `${token}`,
         },
@@ -60,7 +60,7 @@ const CashSlip = () => {
   };
 
   return (
-    <div>
+    <div style={{width:"100%", height:"100%"}}>
       <Navbar />
       <Sidebar />
       <div>
@@ -301,7 +301,7 @@ const CashSlip = () => {
                   <button type="button" className="btn btn-primary" style={{ float: "right", marginRight: "10px", right: "5%" }} onClick={() => navigate("/CashSlipdetail")}>Cancel</button>
                   <button type="button" className="btn btn-primary" style={{ float: "right", marginRight: "10px", right: "5%" }} onClick={() => navigate("/generatePdf")}>Print</button>
 
-                  <button type="submit" className="btn btn-primary" style={{ float: "right", marginRight: "15px" }} >Save Data</button>
+                  <button type="submit" className="btn btn-primary" style={{ float: "right", marginRight: "15px" }} >Save</button>
                 </div>
               </Form>
             </div>
