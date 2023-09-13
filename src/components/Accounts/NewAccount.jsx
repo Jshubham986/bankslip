@@ -7,25 +7,60 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Container } from "react-bootstrap";
+import jwtDecode from "jwt-decode";
 
 const { Option } = Select;
 const NewAccount = () => {
+  const [selectedState, setSelectedState] = useState("");
+
+  const token = localStorage.getItem("token");
+  const decode = jwtDecode(token);
+
+
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(true);
+  const [Data, setData] = useState({
+    Account_name: "",
+    Address: "",
+    mobile: "",
+    country: "India",
+    state: "",
+    city: "",
+    pincode: "",
 
-  const handleSubmit = async (values) => {
+  })
+  // const SubmitData=()=>{
+  //   axios
+  //   .post("http://localhost:4545/AddAccountMaster", Data,{
+  //     headers: {
+  //       authorization: `${token}`,
+  //     },
+  //   })
+  //   .then((res) => {
+  //     alert("Data Uploadede Succefully")
+  //   })
+  //   .catch((err) => console.log(err));
+  // }
+  const handleSubmit = async () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "https://octoedge.in/AddAccountMaster",
-        values
+        "http://localhost:4545/AddAccountMaster_by_Id",
+        {
+          ...Data,
+          state: selectedState,
+        }, {
+        headers: {
+          authorization: `${token}`,
+        },
+      }
       );
-
+      
       if (response.status === 200) {
         toast.success("Account saved successfully!");
-        navigate("/Maincontenct");
+        navigate("/AccountList");
       } else {
         toast.error("Failed to save account.");
       }
@@ -35,9 +70,7 @@ const NewAccount = () => {
     }
     setLoading(false);
   };
-  const handleActiveToggle = (checked) => {
-    setActive(checked);
-  }
+ 
   return (
     <>
       <Navbar />
@@ -50,7 +83,7 @@ const NewAccount = () => {
                 <Col flex="none">
                   <span
                     onClick={() => {
-                      navigate("/Maincontenct");
+                      navigate("/AccountList");
                     }}
                     style={{ fontSize: "25px", cursor: "pointer" }}
                   >
@@ -66,127 +99,204 @@ const NewAccount = () => {
                   <Col span={10}>
                     <Form.Item
                       label="Account Name:"
-                      name="account_name"
+                      name="Account_name"
                       rules={[{ required: true }]}
-                      
+
+
                     >
-                      <Input placeholder="Account Name"  disabled={!active}/>
+                      <Input placeholder="Account Name"
+                        value={Data.Account_name}
+                        onChange={(e) => {
+                          setData({
+                            ...Data, Account_name: e.target.value
+                          })
+                        }} />
                     </Form.Item>
 
                     <Form.Item
                       label="Mobile No.:"
                       name="mobile"
                       rules={[{ required: true }]}
-                     
+
                     >
-                      <Input type="number" step="1" placeholder="Mobile No"  disabled={!active} />
+                      <Input type="number" step="1" placeholder="Mobile No" disabled={!active}
+                        value={Data.mobile}
+                        onChange={(e) => {
+                          setData({
+                            ...Data, mobile: e.target.value
+                          })
+
+                        }} />
                     </Form.Item>
 
                     <Form.Item
                       label="City:"
                       name="city"
                       rules={[{ required: true }]}
-                      
+
                     >
-                      <Input placeholder="City"  disabled={!active} />
+                      <Input placeholder="City" disabled={!active}
+
+                        value={Data.city}
+                        onChange={(e) => {
+                          setData({
+                            ...Data, city: e.target.value
+                          })
+                        }} />
                     </Form.Item>
 
                     <Form.Item
-                      label="State:"
-                      name="state"
-                      rules={[{ required: true }]}
-                      
+                      label="State:" name="state"
                     >
-                      <Select placeholder="Select a state" disabled={!active}>
+                      <Select placeholder="Select a state"
+                        disabled={!active}
+                        value={selectedState}
+                        onChange={(value) => setSelectedState(value)}>
                         <Option value="Andhra Pradesh">Andhra Pradesh</Option>
                         <Option value="Arunachal Pradesh">
-                        Arunachal Pradesh
+                          Arunachal Pradesh
                         </Option>
                         <Option value="Assam">
-                        Assam
-                          </Option>
-                          <Option value="Bihar">
+                          Assam
+                        </Option>
+                        <Option value="Bihar">
                           Bihar
-                          </Option>
-                          <Option value="Chhattisgarh">
+                        </Option>
+                        <Option value="Chhattisgarh">
                           Chhattisgarh
-                          </Option>
-                          <Option value="">
+                        </Option>
+                        <Option value="">
                           Goa
-                          </Option>
-                          <Option value="Gujarat">
+                        </Option>
+                        <Option value="Gujarat">
                           Gujarat
-                          </Option>
-                          <Option value="Haryana">
+                        </Option>
+                        <Option value="Haryana">
                           Haryana
-                          </Option>
-                          <Option value="Himachal Pradesh">
+                        </Option>
+                        <Option value="Himachal Pradesh">
                           Himachal Pradesh
-                          </Option>
-                          <Option value="Jammu and Kashmir">
+                        </Option>
+                        <Option value="Jammu and Kashmir">
                           Jammu and Kashmir
-                          </Option>
-                          <Option value="Jharkhand">
+                        </Option>
+                        <Option value="Jharkhand">
                           Jharkhand
-                          </Option>
-                          <Option value="Karnataka">
+                        </Option>
+                        <Option value="Karnataka">
                           Karnataka
-                          </Option>
-                          <Option value="Kerala">
+                        </Option>
+                        <Option value="Kerala">
                           Kerala
-                          </Option>
-                          <Option value="Madhya Pradesh">
+                        </Option>
+                        <Option value="Madhya Pradesh">
                           Madhya Pradesh
-                          </Option>
-                          <Option value="Maharashtra" Select>
+                        </Option>
+                        <Option value="Maharashtra" Select>
                           Maharashtra
-                          </Option>
-                          <Option value="Manipur">
+                        </Option>
+                        <Option value="Manipur">
                           Manipur
-                          </Option>
-                          <Option value="Meghalaya">
+                        </Option>
+                        <Option value="Meghalaya">
                           Meghalaya
-                          </Option>
-                          <Option value="Mizoram">
+                        </Option>
+                        <Option value="Mizoram">
                           Mizoram
-                          </Option>
-                          <Option value="Nagaland">
+                        </Option>
+                        <Option value="Nagaland">
                           Nagaland
-                          </Option>
-                          <Option value="Odisha">
+                        </Option>
+                        <Option value="Odisha">
                           Odisha
-                          </Option>
-                          <Option value="Punjab">
+                        </Option>
+                        <Option value="Punjab">
                           Punjab
-                          </Option>
-                          <Option value="Rajasthan">
+                        </Option>
+                        <Option value="Rajasthan">
                           Rajasthan
-                          </Option>
-                          <Option value="Sikkim">
+                        </Option>
+                        <Option value="Sikkim">
                           Sikkim
-                          </Option>
-                          <Option value="Tamil Nadu	">
-                          Tamil Nadu	
-                          </Option>
-                          <Option value="Telangana">
+                        </Option>
+                        <Option value="Tamil Nadu	">
+                          Tamil Nadu
+                        </Option>
+                        <Option value="Telangana">
                           Telangana
-                          </Option>
-                          <Option value="Tripura">
+                        </Option>
+                        <Option value="Tripura">
                           Tripura
-                          </Option>
-                          <Option value="Uttar Pradesh	">
-                          Uttar Pradesh	
-                          </Option>
-                          <Option value="Uttarakhand">
+                        </Option>
+                        <Option value="Uttar Pradesh	">
+                          Uttar Pradesh
+                        </Option>
+                        <Option value="Uttarakhand">
                           Uttarakhand
-                          </Option>
-                          <Option value="West Bengal	">
-                          West Bengal	
-                          </Option>
+                        </Option>
+                        <Option value="West Bengal	">
+                          West Bengal
+                        </Option>
 
 
                         {/* Add other states */}
                       </Select>
+                    </Form.Item>
+
+                    {/* <Form.Item
+                      label="Active:"
+                      name="active"
+                      valuePropName="checked"
+                      initialValue={true}
+                    >
+                      <Switch  onChange={handleActiveToggle}/>
+                    </Form.Item> */}
+                  </Col>
+                  <Col span={10}>
+
+
+                    <Form.Item
+                      label="Address:"
+                      name="address"
+                      rules={[{ required: true }]}
+                    >
+                      <Input placeholder="Address" disabled={!active}
+                        value={Data.Address}
+                        onChange={(e) => {
+                          setData({
+                            ...Data, Address: e.target.value
+                          })
+                        }}
+                      />
+                    </Form.Item>
+
+                    <Form.Item
+                      label="Pin Code:"
+                      name="pin code"
+                      rules={[{ required: true }]}
+                    >
+                      <Input type="number" step="1" placeholder="Pin code" disabled={!active}
+                        value={Data.pincode}
+                        onChange={(e) => {
+                          setData({
+                            ...Data, pincode: e.target.value
+                          })
+                        }}
+                      />
+                    </Form.Item>
+
+                    <Form.Item
+                      label="Country:"
+                      name="country"
+
+                    >
+                      <Input placeholder="India" defaultValue="India"
+                        value={Data.country}
+                        onChange={(e) => {
+                          setData({
+                            ...Data, country: e.target.value
+                          })
+                        }} />
                     </Form.Item>
 
                     <Form.Item
@@ -195,57 +305,19 @@ const NewAccount = () => {
                       valuePropName="checked"
                       initialValue={true}
                     >
-                      <Switch  onChange={handleActiveToggle}/>
-                    </Form.Item>
-                  </Col>
-                  <Col span={10}>
-                    <Form.Item
-                      label="Email Id:"
-                      name="email"
-                      rules={[{ required: true, type: "email" }]}
-                    >
-                      <Input placeholder="Email Id" disabled={!active} />
-                    </Form.Item>
-
-                    <Form.Item
-                      label="Address:"
-                      name="address"
-                      rules={[{ required: true }]}
-                    >
-                      <Input placeholder="Address"  disabled={!active}/>
-                    </Form.Item>
-
-                    <Form.Item
-                      label="Pin Code:"
-                      name="pin code"
-                      rules={[{ required: true }]}
-                    > 
-                      <Input type="number" step="1" placeholder="Pin code"  disabled={!active}/>
-                    </Form.Item>
-
-                    <Form.Item
-                      label="Country:"
-                      name="country"
-                      rules={[{ required: true }]}
-                    >
-                      <Input placeholder="India" defaultValue="India" disabled={!active} />
+                      <Switch  />
                     </Form.Item>
 
                     <Row justify="start">
                       <Col className="accountHolder-submit-button">
-                        <Button
-                          type="primary"
-                          htmlType="submit"
-                          loading={loading}
-                        >
-                          Submit
-                        </Button>
+                      <button type="submit" className="btn btn-primary" style={{ float: "right", marginRight: "15px" }} >Save</button>
+
                       </Col>
                       <Col>
                         <Button
                           style={{ marginLeft: "10px" }}
                           onClick={() => {
-                            navigate("/Maincontenct");
+                            navigate("/AccountList");
                           }}
                         >
                           Cancel

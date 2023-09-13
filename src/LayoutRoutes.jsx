@@ -18,6 +18,7 @@ import Comingsoon from "./components/ComingSoon/Comingsoon";
 import Print_Cashslip from "./components/PrintCashslip/Print_Cashslip";
 import GeneratePdf from "./components/Cashslip/GeneratePdf";
 import Admin from "./components/adminPannel/Admin"
+import AccountList from "./components/Accounts/AccountList";
 
 const Home = () => {
   return (
@@ -35,6 +36,7 @@ const Home = () => {
             <Route exact path="/CashSlipButton" element={<CashSlipButton/>} />
             <Route exact path="/Print_Cashslip" element={<Print_Cashslip/>}/>
             <Route exact path="/AccountHolderList" element={<AccountHolderList/>} />
+            <Route exact path="/AccountList" element={<AccountList/>} />
             <Route exact path="/BankMaster" element={<BankMaster/>}/>
             <Route exact path="/ShowAccounts" element={<ShowBankAccounts/>}/>
             <Route exact path="/BankAccountDetails" element={<BankAccountDetails/>}/>

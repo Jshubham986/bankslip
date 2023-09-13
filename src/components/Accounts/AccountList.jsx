@@ -1,15 +1,16 @@
 import  { useState, useEffect } from "react";
-
+import Navbar from "../Navbar/Navbar";
+import Sidebar from "../Navbar/Sidebar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
 
 import { BsPlusLg } from "react-icons/bs";
-// import { AiFillDelete, AiFillPrinter } from "react-icons/ai";
+import { AiFillDelete, AiFillPrinter } from "react-icons/ai";
 import { Pagination } from "antd";
 
-const CashSlipdetails = () => {
+const AccountList = () => {
     const token = localStorage.getItem("token");
   const decode = jwtDecode(token);
 
@@ -29,9 +30,11 @@ const CashSlipdetails = () => {
     },[]);
 
     const handleClick = () => {
-        navigate("/CashSlip");
+        navigate("/NewAccount");
     };
-    
+    const handleprint = () => {
+        navigate("/Print_Cashslip");
+    };
 
     const getData = async () => {
         try {
@@ -54,7 +57,8 @@ const CashSlipdetails = () => {
 
     return (
         <>
-            
+            <Navbar />
+            <Sidebar />
 
             <div className="content-wrapper">
                 <div className="container">
@@ -63,28 +67,26 @@ const CashSlipdetails = () => {
                             <thead>
                                 <tr className="table-dark">
                                     <th scope="row">#</th>
-                                    <th scope="col">Slip No</th>
-                                    <th scope="col">Date</th>
+                                    
+                                   
                                     <th scope="col">Account Name</th>
-                                    <th scope="col">Account No</th>
-                                    <th scope="col">Bank Name</th>
-                                    <th scope="col">Branch Name</th>
-                                    <th scope="col">Total</th>
-                                    <th scope="col">Print</th>
-                                    <th scope="col">Delete</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">City</th>
+                                    <th scope="col">State</th>
+                                    <th scope="col">Country</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
                                 {data.slice(startIndex, endIndex).map((element, index) => (
                                     <tr key={index}>
                                         <td>{index + 1}</td>
-                                        <td>{element.slip_no}</td>
-                                        <td>{element.date}</td>
+                                     
                                         <td>{element.Account_name}</td>
-                                        <td>{element.Account_no}</td>
-                                        <td>{element.bank_name}</td>
-                                        <td>{element.Branch_name}</td>
-                                        <td>{element.total}</td>
+                                        <td>{element.Address}</td>
+                                        <td>{element.city}</td>
+                                        <td>{element.state}</td>
+                                        <td>{element.country}</td>
                                         
                                     </tr>
                                 ))}
@@ -116,4 +118,4 @@ const CashSlipdetails = () => {
         </>
     );
 }
-export default CashSlipdetails;
+export default AccountList;

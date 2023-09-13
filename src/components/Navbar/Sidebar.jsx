@@ -103,7 +103,7 @@ const Sidebar = () => {
               data-accordion="false"
             >
               <li className="nav-item">
-                <Link to="/NewAccount" className="nav-link">
+                <Link to="/AccountList" className="nav-link">
                   <i className="nav-icon fas fa fa-user" />
                   <p>Account Holders</p>
                   <span className="right badge badge-danger">New</span>

@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Table, Spin, Empty, Button, Popconfirm, message } from "antd";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Navbar/Sidebar";
+import axios from "axios";
 
 const AccountHolderList = () => {
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://octoedge.in/Get_AccountMaster")
+    axios("http://localhost:4545/Get_AccountMaster_by_id")
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
@@ -42,7 +43,6 @@ const AccountHolderList = () => {
     },
     {
       title: "Client ID",
-    
       dataIndex: "client_id",
       key: "client_id",
     },
@@ -56,11 +56,7 @@ const AccountHolderList = () => {
       dataIndex: "mobile",
       key: "mobile",
     },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-    },
+    
     {
       title: "Address",
       dataIndex: "Address",
