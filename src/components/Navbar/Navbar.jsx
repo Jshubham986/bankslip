@@ -1,7 +1,12 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {AiOutlinePoweroff} from "react-icons/ai"
 
 const Navbar = () => {
+const navigate = useNavigate()
+  const handlelogout =()=>{
+    navigate("/")
+  }
   return (
     <div>
       {/* Navbar */}
@@ -26,7 +31,7 @@ const Navbar = () => {
         {/* Right navbar links */}
         <ul className="navbar-nav ml-auto">
           {/* Navbar Search */}
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a
               className="nav-link"
               data-widget="navbar-search"
@@ -53,24 +58,24 @@ const Navbar = () => {
                       type="button"
                       data-widget="navbar-search"
                     >
-                      <i className="fas fa-times" />
+                   <i class="bi bi-power"></i>
                     </button>
                   </div>
                 </div>
               </form>
             </div>
-          </li>
+          </li> */}
           
          
           <li className="nav-item">
-            <a
-              className="nav-link"
-              data-widget="fullscreen"
-              href="#"
-              role="button"
-            >
-              <i className="fas fa-expand-arrows-alt" />
-            </a>
+            
+             <AiOutlinePoweroff 
+             style={{
+              marginRight:"2rem",
+              cursor:"pointer"
+            }} 
+            onClick={handlelogout}/>
+          
           </li>
          
         </ul>

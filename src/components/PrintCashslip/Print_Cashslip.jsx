@@ -1,185 +1,247 @@
-import { useState,useRef, useEffect } from "react";
-import './Print_Cashslip.css'
-import { Col, Row } from "antd";
-import  { useReactToPrint,ReactToPrint } from "react-to-print";
-import { Document, Page,StyleSheet } from "@react-pdf/renderer";
+import { useState, useRef, useEffect } from "react";
+import "./print_Cashslip.css";
+// import { Col, Row } from "antd";
+import { useReactToPrint, ReactToPrint } from "react-to-print";
+import { Document, Page, StyleSheet } from "@react-pdf/renderer";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 // import NewSlip from "./NewSlip";
 
-function Print_Cashslip() {
-const token = localStorage.getItem("token")
-const decode = jwtDecode(token);
 
-const [data, setData] = useState([]);
-useEffect(() => {
-    getdata();
-   
-},[]);
 
-const getdata = async ()=>{
-  try{
-    const response = await axios.get("https://octoedge.in/Get_cashslip_by_id",{
-      headers: {
-        Authorization: `${token}`,
-      }
-    });
-    setData(response?.data?.data)
-    console.log(response);
-  }catch(error) {
-    console.log("Error Fecht:",error)
+
+
+function formatDate(inputDate) {
+  const parts = inputDate.split('-');
+  if (parts.length === 3) {
+
+    const [year, month, day] = parts;
+
+
+    const dateObject = new Date(year, month - 1, day);
+
+
+    const formattedDay = String(dateObject.getDate()).padStart(2, '0');
+    const formattedMonth = String(dateObject.getMonth() + 1).padStart(2, '0');
+    const formattedYear = dateObject.getFullYear();
+
+
+    return `${formattedDay}${formattedMonth}${formattedYear}`;
+  } else {
+
+    return 'Invalid Date';
   }
 }
 
-
+function App() {
+  const {id} = useParams();
+  console.log(id)
   const componentPdf = useRef();
   const generatePdf = useReactToPrint({
-    content:()=> componentPdf.current,
-    documentTitle:"userdata",
+    content: () => componentPdf.current,
+    documentTitle: "userdata",
     // onAfterPrint:()=>alert("pdf generated")
   });
 
   const styles = StyleSheet.create({
     page: {
-      flexDirection: 'row',
-      backgroundColor: '#ffffff',
+      backgroundImage: 'url("cashSlip.jpg")',
+      backgroundSize: "cover",
+      margin: "10px",
+      padding: "20px",
+      width: "2480px",
+      height: "3508px",
+      flexDirection: "row",
+      backgroundColor: "red",
     },
     content: {
       flex: 1,
       padding: 10,
       backgroundImage: 'url("cashSlip.jpg")',
-      backgroundSize: 'cover',
-      
+      backgroundSize: "cover",
+      margin: "10px",
+      padding: "20px",
+      width: "850px",
+      height: "308px",
+      flexDirection: "row",
+      // backgroundColor: "red",
+      backgroundSize: "cover",
     },
   });
+  const token = localStorage.getItem("token")
+  const decode = jwtDecode(token);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getdata();
+
+  }, []);
+
+
+  const getdata = async () => {
+    try {
+      const response = await axios.post("http://localhost:4545/Get_cashslip_by_slip_no",{slip_no:id}, {
+        headers: {
+          Authorization: `${token}`,
+        }
+      });
+      setData(response?.data?.data)
+      console.log(response);
+    } catch (error) {
+      console.log("Error Fecht:", error)
+    }
+  }
+
+
+
   return (
     <>
-    {/* <NewSlip/> */}
-    {data.map((element)=>(
 
-    <div ref={componentPdf}>
-      <Document>
-        <Page size="A4" style={styles.page}>
-          <div style={styles.content}>
-      <div className="root">
-        <Row>
-           
-           
-          <Col span={18} push={6}>
-            <div style={{ color: "red" }}>
-              <div className="header">
-                <h3 style={{ marginLeft: "-35px", marginTop:"52px",letterSpacing:"12px" }}>{element.date}</h3>
-              </div>
-              <div style={{ display: "flex" }}>
-                <h3 style={{ marginLeft: "-200px",marginTop:"-12px",letterSpacing:"11.5px" }}>{element.Account_no}</h3>
-              </div>
-              <div style={{ marginLeft: "-150px", marginTop: "37px" }}>
-                <h3>{element.Account_name}</h3>
-              </div>
-              <div style={{ display: "flex" }}>
-                <div style={{ marginLeft: "-200px", marginTop: "50px" }}>
-                  <p>Date:12/12/23</p>
+      {data.map((element) => (
+
+        <div ref={componentPdf}>
+          <Document>
+            <Page size="A4" style={styles.page}>
+              <div style={styles.content}>
+
+                {/* Left Side Of Cash Slip */}
+                <div className="root">
+                  <div className="leftdate" >
+                    <p>
+                      {formatDate(element.date)}
+                    </p>
+                  </div>
+                  <div className="leftaccountno">
+                    <p>
+                      {element.Account_no}
+                    </p>
+                  </div>
+                  <div className="leftname">
+                    <p>
+                      {element.Account_name}
+                    </p>
+                  </div>
+                  <div className="lefttotal">
+                    <p>
+                      {element.total}/-
+                    </p>
+                  </div>
+                  <div className="lftolword">
+                    <p>
+                      {element.total}.
+                    </p>
+                  </div>
                 </div>
-                <div style={{ marginLeft: "90px", marginTop: "50px" }}>
-                  <p >
-                    Cheque No. <br /> 1234566
-                  </p>
+
+                {/* Right Side of cashslip */}
+
+                <div className="root">
+                  <div className="rightdate">
+                    <p>
+                      {formatDate(element.date)}
+                    </p>
+                  </div>
+                  <div className="rightaccountno">
+                    <p>
+                      {element.Account_no}
+                    </p>
+                  </div>
+                  <div className="rightname">
+                    <p>
+                      {element.Account_name}
+                    </p>
+                  </div>
+
+                  {/* // Total of 2000 */}
+                  <div>
+                    <p className="qty2000">
+                      {element.qty2000}
+                    </p>
+                    <p className="tot2000">
+                      {element.thou}/-
+                    </p>
+
+                  </div>
+                  {/* Total Of 500 */}
+                  <div>
+                    <p className="qty200">
+                      {element.qty500}
+                    </p>
+                    <p className="tot200">
+                      {element.fivhun}/-
+                    </p>
+
+                  </div>
+                  {/* Total of 200 */}
+                  <div>
+                    <p className="qty200">
+                      {element.qty200}
+                    </p>
+                    <p className="tot200">
+                      {element.twohun}/-
+                    </p>
+
+                  </div>
+                  {/* Total of 100 */}
+                  <div>
+                    <p className="qty200">
+                      {element.qty100}
+                    </p>
+                    <p className="tot200">
+                      {element.hun}/-
+                    </p>
+                  </div>
+                  {/* Total OF 50 */}
+                  <div>
+                    <p className="qty200">
+                      {element.qty50}
+                    </p>
+                    <p className="tot200">
+                      {element.fif}/-
+                    </p>
+                  </div>
+                  {/* Total of 20 */}
+                  <div>
+                    <p className="qty200">
+                      {element.qty20}
+                    </p>
+                    <p className="tot200">
+                      {element.twenty}/-
+                    </p>
+                  </div>
+                  {/* Total of 10 */}
+                  <div>
+                    <p className="qty200">
+                      {element.qty10}
+                    </p>
+                    <p className="tot200">
+                      {element.ten}/-
+                    </p>
+                  </div>
                 </div>
-                <div style={{ marginLeft: "40px", marginTop: "50px" }}>
-                  <p> {element.total}/-</p>
+
+                {/* Right Side Total Amount */}
+                <div>
+                  <div className="righttotal">
+                    <p>
+                      {element.total}/-
+                    </p>
+                  </div>
+                  <div className="rtolwrd">
+                    <p>
+                      {element.total}.
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div style={{ marginLeft: "70px", marginTop: "2px" }}>
-                <p> {element.total}/-</p>
-              </div>
-              <div style={{ marginLeft: "-160px", marginTop: "-10px" }}>
-                <p>Seven Thousand Two Hundred Fifty Five Only.</p>
-              </div>
-            </div>
-          </Col>
-          
-       
-           
-          <Col span={6} pull={18}>
-            <div>
-              <div style={{ display: "flex" }}>
-                <h3 style={{ marginLeft: "800px", marginTop:"50px",letterSpacing:"12px" }}>67676747</h3>
-              </div>
-              <div style={{ display: "flex" }}>
-                <h3 style={{ marginLeft: "420px", marginTop:"-6px",letterSpacing:"10px" }}>2222222222</h3>
-              </div>
-              {/* <div style={{ display: "flex" }}>
-                <h3 style={{ marginLeft: "420px", marginTop:"-5px",letterSpacing:"10px" }}>{element.bank_code}</h3>
-              </div> */}
-              <div style={{ display: "flex" }}>
-                <h3 style={{ marginLeft: "640px", marginTop:"-70px",letterSpacing:"11px" }}>{element.Account_no}</h3>
-              </div>
-              <div className="acname"> 
-                <h5 style={{ marginLeft: "510px", marginTop: "-17px" }}>
-                  {element.Account_name}
-                </h5>
-              </div>
-              <div className="abc" style={{ display: "flex", marginTop: "10px" }}>
-                <div style={{ marginLeft: "480px" }}>
-                  <p>Chandrapur</p>
-                </div>
-                <div style={{ marginLeft: "80px" }}>
-                  <p>Chandrapur</p>
-                </div>
-                <div style={{ marginLeft: "45px" }}>
-                  <p>123456</p>
-                </div>
-              </div>
-              <div   style={{ marginLeft: "800px", marginTop: "-70px" }}>
-                <div className="qty" style={{ display: "flex", marginLeft: "14px" }}>
-                  <h4 style={{ marginLeft: "80px" }}>{element.qty2000}</h4>
-                  <h4 style={{ marginLeft: "0px" }}>{element.thou}/-</h4>
-                </div>
-                <div  style={{ display: "flex", marginLeft: "15px" ,marginTop:"-35px" }}>
-                  <h4 style={{ marginLeft: "80px" }}>{element.qty500}</h4>
-                  <h4 style={{ marginLeft: "80px" }}>{element.fivhun}/-</h4>
-                </div>
-                {/* <div style={{ display: "flex", marginLeft: "15px" ,marginTop:"-35px" }}>
-                  <h4 style={{ marginLeft: "80px" }}>{element.qty200}</h4>
-                  <h4 style={{ marginLeft: "0px" }}>{element.twohun}/-</h4>
-                </div> */}
-                {/* <div style={{ display: "flex", marginLeft: "15px" ,marginTop:"-35px" }}>
-                  <h4 style={{ marginLeft: "80px" }}>{element.qty100}</h4>
-                  <h4 style={{ marginLeft: "0px" }}>{element.hun}/-</h4>
-                </div> */}
-                {/* <div style={{ display: "flex", marginLeft: "15px" ,marginTop:"-30px" }}>
-                  <h4 style={{ marginLeft: "80px" }}>{element.qty50}</h4>
-                  <h4 style={{ marginLeft: "0px" }}>{element.fif}/-</h4>
-                </div>
-                <div style={{ display: "flex", marginLeft: "15px" ,marginTop:"-35px" }}>
-                  <h4 style={{ marginLeft: "80px" }}>{element.qty20}</h4>
-                  <h4 style={{ marginLeft: "0px" }}>{element.twenty}/-</h4>
-                </div>
-                <div style={{ display: "flex", marginLeft: "15px" ,marginTop:"-35px" }}>
-                  <h4 style={{ marginLeft: "80px" }}>{element.qty10}</h4>
-                  <h4 style={{ marginLeft: "0px" }}>{element.ten}/-</h4>
-                </div> */}
-               
-              </div>
-              <div className="toword" style={{display:"flex",marginLeft:"460px",marginTop:"-30px"}}>
-                <h5>Twenty_Eight_Thousand_Eight_Hundred_Seventy_Seven_Only.</h5>
-                <h4 style={{marginLeft:"180px"}}>{element.total}/-</h4>
-              </div>
-            </div>
-            </Col>
-            
-        
-        </Row>
-      </div>
-      <button onClick={generatePdf} 
-      >print</button>
-      </div>
-      </Page>
-      </Document>
-      </div>
-    ))}
+            </Page>
+          </Document>
+        </div >
+      ))
+      }
+      <button onClick={generatePdf}>print</button>
     </>
   );
 }
 
-export default Print_Cashslip;
+export default App;

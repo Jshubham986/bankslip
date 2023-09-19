@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Navbar/Sidebar";
 import axios from "axios";
@@ -12,11 +12,12 @@ import { Pagination } from "antd";
 
 const CashSlipdetails = () => {
     const token = localStorage.getItem("token");
-  const decode = jwtDecode(token);
+    const decode = jwtDecode(token);
 
     const navigate = useNavigate();
 
     const [data, setData] = useState([]);
+    const [slipid, setSlipid] = useState([]);
 
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
@@ -26,30 +27,54 @@ const CashSlipdetails = () => {
 
     useEffect(() => {
         getData();
-       
-    },[]);
+
+    }, []);
 
     const handleClick = () => {
         navigate("/CashSlip");
     };
-    const handleprint = () => {
-        navigate("/Print_Cashslip");
+    const handleprint = (id) => {
+        navigate(`/Print_Cashslip/${id}`);
+        console.log(id)
     };
 
     const getData = async () => {
         try {
-            const response = await axios.get("https://octoedge.in/Get_cashslip_by_id", {
+            const response = await axios.get("http://localhost:4545/Get_cashslip_by_id", {
                 headers: {
                     authorization: `${token}`,
                 },
             });
-        setData(response?.data?.data)
-            console.log(response);
+            setData(response?.data?.data)
+            // setSlipid(response?.data?.data?.slip_no)
+            console.log(response.data.data[0].slip_no);
             // console.log(decode.admin.client_id);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     };
+
+    function formatDate(inputDate) {
+        const parts = inputDate.split('-');
+        if (parts.length === 3) {
+
+            const [year, month, day] = parts;
+
+
+            const dateObject = new Date(year, month - 1, day);
+
+
+            const formattedDay = String(dateObject.getDate()).padStart(2, '0');
+            const formattedMonth = String(dateObject.getMonth() + 1).padStart(2, '0');
+            const formattedYear = dateObject.getFullYear();
+
+
+            return `${formattedDay}/${formattedMonth}/${formattedYear}`;
+        } else {
+
+            return 'Invalid Date';
+        }
+    }
 
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -83,7 +108,7 @@ const CashSlipdetails = () => {
                                     <tr key={index}>
                                         <td>{index + 1}</td>
                                         <td>{element.slip_no}</td>
-                                        <td>{element.date}</td>
+                                        <td>{formatDate(element.date)}</td>
                                         <td>{element.Account_name}</td>
                                         <td>{element.Account_no}</td>
                                         <td>{element.bank_name}</td>
@@ -91,7 +116,7 @@ const CashSlipdetails = () => {
                                         <td>{element.total}</td>
                                         <td>
                                             <button style={{ border: "none", backgroundColor: "white" }}
-                                             onClick={handleprint}
+                                                onClick={()=>handleprint(element?.slip_no)}
                                             >
                                                 <AiFillPrinter style={{ fontSize: "20px" }} />
                                             </button>
@@ -107,16 +132,16 @@ const CashSlipdetails = () => {
                         </table>
                     </div>
                     <Pagination
-                            current={currentPage}
-                            onChange={(handlePageChange)} // Update current page
-                            total={data.length}
-                            pageSize={itemsPerPage}
-                        />
+                        current={currentPage}
+                        onChange={(handlePageChange)} // Update current page
+                        total={data.length}
+                        pageSize={itemsPerPage}
+                    />
                 </div>
                 <button
                     style={{
                         height: "7vh",
-                        position: "absolute",
+                        position: "fixed",
                         right: "3%",
                         bottom: "3%",
                         borderRadius: "50%",

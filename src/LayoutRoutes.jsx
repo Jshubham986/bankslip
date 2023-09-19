@@ -34,7 +34,7 @@ const Home = () => {
             <Route exact path="/NewAccount" element={<NewAccount />} />
             <Route exact path="/CashSlipdetail" element={<CashSlipdetails/>} />
             <Route exact path="/CashSlipButton" element={<CashSlipButton/>} />
-            <Route exact path="/Print_Cashslip" element={<Print_Cashslip/>}/>
+            <Route exact path="/Print_Cashslip/:id" element={<Print_Cashslip/>}/>
             <Route exact path="/AccountHolderList" element={<AccountHolderList/>} />
             <Route exact path="/AccountList" element={<AccountList/>} />
             <Route exact path="/BankMaster" element={<BankMaster/>}/>

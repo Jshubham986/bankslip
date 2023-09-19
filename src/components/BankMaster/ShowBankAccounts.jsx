@@ -102,7 +102,7 @@ const ShowBankAccounts = () => {
                 </div>
                 <button style={{
                     height: "7vh",
-                    position: "absolute",
+                    position: "fixed",
                     right: "3%",
                     bottom: "8%",
                     borderRadius: "50%",
